@@ -78,10 +78,14 @@ public class StuViDeviceItemSettingActivity extends Activity {
 
 
     ArrayList<String> m_setings;
+    ArrayList<String> mResultSettingstr  = new ArrayList<>();
+    int mReturnReg;
 
     String[] mConnectparameters;
 //    String[] mUploadparameters;
     int mRegs[];
+
+
 
     Button but;
     ArrayList<byte[]> sendbufs = new ArrayList<>();
@@ -91,6 +95,8 @@ public class StuViDeviceItemSettingActivity extends Activity {
 
     boolean misStart;
     int mCurCMD;
+
+
 
 MainActivity mainActivity = MainActivity.getInstance();
     @Override
@@ -311,6 +317,7 @@ MainActivity mainActivity = MainActivity.getInstance();
                 uploadvalueconter.setVisibility(View.GONE);
                 mConters[0].setVisibility(View.VISIBLE);
                 mTextlabes[0].setText("");
+                mTextSetValues[0].setText(m_setings.get(1));
 //                spinercurselectvalue =0;
             }
         }
@@ -391,6 +398,8 @@ MainActivity mainActivity = MainActivity.getInstance();
         mSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mResultSettingstr.clear();
+                mResultSettingstr.add(registerinfosel[position][1]);
                 if(position==1)
                 {
                     uploadvalueconter.setVisibility(View.VISIBLE);
@@ -511,221 +520,7 @@ MainActivity mainActivity = MainActivity.getInstance();
 
         @Override
         public void onClick(View v) {
-            byte[] crusetbyte;
-            sendbufs.clear();
-            int j=0;
-            byte[] sendbuf;
-            int[] datalen=new int[mRegs.length];
-            int i=-1;
-            for(j=0;j<mRegs.length;j++)
-            {
-                for(i=0;i<baseinfo.length;i++)
-                {
-                    if(mRegs[j] == Integer.valueOf(baseinfo[i][0]))
-                    {
-                        datalen[j]=Integer.valueOf(baseinfo[i][2]);
-                        break;
-                    }
-                }
-            }
-
-            switch (mRegs[0])
-            {
-                case 103:
-                    sendbuf=new byte[datalen[0] +18];
-                    sendbuf[0]= (byte) 0xFD;
-                    sendbuf[3]= (byte) ((datalen[0]+13)%0x100);
-                    sendbuf[5]=0x15;
-                    sendbuf[14]= (byte) ((mRegs[0])%0x100);
-                    crusetbyte = mTextSetValues[0].getText().toString().getBytes();
-                    if(crusetbyte.length>datalen[0])
-                    {
-                        String temp = getString(R.string.iuput_lenth_error);
-                        Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    for( i=0;i<datalen[0];i++)
-                    {
-                        if(i<crusetbyte.length)
-                        {
-                            sendbuf[16+i]=crusetbyte[i];
-                        }
-                        else
-                            sendbuf[16+i]=(byte)0x00;
-                    }
-                    CodeFormat.crcencode(sendbuf);
-                    sendbufs.add(sendbuf);
-                    break;
-                case 201:
-                    for(i=0;i<mRegs.length;i++)
-                    {
-                        if(mRegs[i]==201)
-                        {
-                            sendbuf=new byte[datalen[i] +18];
-                            sendbuf[0]= (byte) 0xFD;
-                            sendbuf[3]= (byte) ((datalen[0]+13)%0x100);
-                            sendbuf[5]=0x15;
-                            sendbuf[14]= (byte) ((mRegs[i])%0x100);
-                            String APN="";
-                            APN=mTextSetValues[0].getText()+","+mTextSetValues[1].getText()+","+mTextSetValues[2].getText();
-                            crusetbyte = APN.getBytes();
-//                            Log.d("zl",APN);
-                            if(crusetbyte.length>datalen[0])
-                            {
-                                String temp = getString(R.string.iuput_lenth_error);
-                                Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            int lenth= datalen[i];
-                         //   int lenth2 =crusetbyte.length;
-                            for(j=0;j<lenth;j++)
-                            {
-                                if(j<crusetbyte.length)
-                                {
-                                    sendbuf[16+j]=crusetbyte[j];
-                                }
-                            }
-                            CodeFormat.crcencode(sendbuf);
-                            sendbufs.add(sendbuf);
-                        }
-                        else if(mRegs[i]==202)
-                        {
-                           if(isboolIP(mTextSetValues[3].getText().toString())==false)
-                           {
-                               String temp = getString(R.string.device_station_ip)+" "+getString(R.string.wrong);
-                               Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
-                               return;
-                           }
-                            sendbuf=new byte[datalen[i] +18];
-                            sendbuf[0]= (byte) 0xFD;
-                            sendbuf[3]= (byte) ((datalen[i]+13)%0x100);
-                            sendbuf[5]=0x15;
-                            sendbuf[14]= (byte) ((mRegs[i])%0x100);
-
-                            String ipmessage=mTextSetValues[3].getText().toString();
-                            int index =ipmessage.indexOf('.');
-                            sendbuf[16] = (byte) (Integer.valueOf(ipmessage.substring(0,index)).shortValue()%0x100);
-                            ipmessage = ipmessage.substring(index+1);
-
-                            index = ipmessage.indexOf('.');
-                            sendbuf[17] = (byte) (Integer.valueOf(ipmessage.substring(0,index)).shortValue()%0x100);
-                            ipmessage = ipmessage.substring(index+1);
-
-                            index = ipmessage.indexOf('.');
-                            sendbuf[18] = (byte) (Integer.valueOf(ipmessage.substring(0,index)).shortValue()%0x100);
-                            ipmessage = ipmessage.substring(index+1);
-
-                            sendbuf[19] = (byte) (Integer.valueOf(ipmessage).shortValue()%0x100);
-                            String temp;
-                            if(isNumeric(mTextSetValues[4].getText().toString())==false)
-                            {
-                                temp = getString(R.string.device_station_port)+" "+getString(R.string.wrong);
-                                Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            //short portvalue = mTextSetValues[4].getText().toString();
-                            temp = mTextSetValues[4].getText().toString();
-
-                            short port = Integer.valueOf(temp).shortValue();
-
-                            ByteBuffer buf = ByteBuffer.allocateDirect(2);
-                            buf.order(ByteOrder.LITTLE_ENDIAN);
-                            buf.putShort(port);
-                            buf.rewind();
-                            buf.get(sendbuf,20,2);
-                            CodeFormat.crcencode(sendbuf);
-                            sendbufs.add(sendbuf);
-                        }
-                    }
-                    break;
-                case 208:
-                    String temoinfo;
-                    String temoinfo1;
-                    sendbuf=new byte[datalen[0] +18];
-                    sendbuf[0]= (byte) 0xFD;
-                    sendbuf[3]= (byte) ((datalen[0]+13)%0x100);
-                    sendbuf[5]=0x15;
-                    sendbuf[14]= (byte) ((mRegs[0])%0x100);
-
-                    ByteBuffer buf = ByteBuffer.allocateDirect(4);
-                    buf.order(ByteOrder.LITTLE_ENDIAN);
-
-                    buf.putInt(Integer.valueOf(registerinfosel[spinercurselectvalue][2]).intValue());
-                    buf.rewind();
-                    buf.get(sendbuf,16,1);
-                    CodeFormat.crcencode(sendbuf);
-                    sendbufs.add(sendbuf);
-                    if(spinercurselectvalue == 0)
-                    {
-                        if(isNumeric(mTextSetValues[0].getText().toString())==false)
-                        {
-                            String temp = getString(R.string.device_report_freq)+" "+getString(R.string.wrong);
-                            Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        sendbuf=new byte[datalen[1] +18];
-                        sendbuf[0]= (byte) 0xFD;
-                        sendbuf[3]= (byte) ((datalen[1]+13)%0x100);
-                        sendbuf[5]=0x15;
-                        sendbuf[14]= (byte) ((mRegs[1])%0x100);
-
-                        String ipmessage=mTextSetValues[0].getText().toString();
-                        short freq = Integer.valueOf(ipmessage).shortValue();
-
-                        buf = ByteBuffer.allocateDirect(2);
-                        buf.order(ByteOrder.LITTLE_ENDIAN);
-                        buf.putShort(freq);
-                        buf.rewind();
-                        buf.get(sendbuf,16,2);
-                        CodeFormat.crcencode(sendbuf);
-                        sendbufs.add(sendbuf);
-                    }
-                    else if(spinercurselectvalue == 1)
-                    {
-                        sendbuf=new byte[datalen[2] +18];
-                        sendbuf[0]= (byte) 0xFD;
-                        sendbuf[3]= (byte) ((datalen[2]+13)%0x100);
-                        sendbuf[5]=0x15;
-                        sendbuf[14]= (byte) ((mRegs[2])%0x100);
-                   //     byte[] timebyte =new byte[12];
-                        for(i=0;i<12;i++)
-                        {
-                            sendbuf[i+16]= (byte) 0xff;
-                        }
-                        temoinfo="";
-                        ArrayList<String> timeinfo=new ArrayList<>();
-                        for(i=0;i<mslidebuts.size();i++)
-                        {
-                            int index=-1;
-                            if(mslidebuts.get(i).isChecked())
-                            {
-                                temoinfo1 = timeviews[i].getText().toString();
-                                timeinfo.add(temoinfo1);
-                            }
-                        }
-                        for(i=0;i<timeinfo.size();i++)
-                        {
-                            String time1;
-                            time1=timeinfo.get(i);
-                            j=time1.indexOf(':');
-                            sendbuf[i*3+1+16]= Byte.valueOf(time1.substring(0,j));
-                            sendbuf[i*3+2+16]= Byte.valueOf(time1.substring(j+1));
-                        }
-                        CodeFormat.crcencode(sendbuf);
-                        sendbufs.add(sendbuf);
-                    }
-                    break;
-                    default:
-                        break;
-            }
-
-            String readOutMsg = DigitalTrans.byte2hex(sendbufs.get(0));
-
-            Log.d("zl",CodeFormat.byteToHex(sendbufs.get(0),sendbufs.get(0).length));
-            misStart = true;
-            mCurCMD = 0;
-            verycutstatus(readOutMsg);
-
+            Readdeviceinfo();
         }
     }
     private void verycutstatus(String readOutMsg) {
@@ -767,6 +562,9 @@ MainActivity mainActivity = MainActivity.getInstance();
                     else
                     {
                         ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.wrong));
+                        mDialog.dismiss();
+                        StuViDeviceItemSettingActivity.this.setResult(0,getIntent());
+                        StuViDeviceItemSettingActivity.this.finish();
                         return;
                     }
                 }
@@ -802,4 +600,249 @@ MainActivity mainActivity = MainActivity.getInstance();
         Pattern pattern = Pattern.compile("[0-9]*");
         return pattern.matcher(string).matches();
     }
+    private void Readdeviceinfo(){
+
+        byte[] crusetbyte;
+        sendbufs.clear();
+        int j=0;
+        byte[] sendbuf;
+        int[] datalen=new int[mRegs.length];
+        int i=-1;
+        for(j=0;j<mRegs.length;j++)
+        {
+            for(i=0;i<baseinfo.length;i++)
+            {
+                if(mRegs[j] == Integer.valueOf(baseinfo[i][0]))
+                {
+                    datalen[j]=Integer.valueOf(baseinfo[i][2]);
+                    break;
+                }
+            }
+        }
+
+        switch (mRegs[0])
+        {
+            case 103:
+                mResultSettingstr.clear();
+                mResultSettingstr.add(mTextSetValues[0].getText().toString());
+                mReturnReg = 103;
+
+                sendbuf=new byte[datalen[0] +18];
+                sendbuf[0]= (byte) 0xFD;
+                sendbuf[3]= (byte) ((datalen[0]+13)%0x100);
+                sendbuf[5]=0x15;
+                sendbuf[14]= (byte) ((mRegs[0])%0x100);
+                crusetbyte = mTextSetValues[0].getText().toString().getBytes();
+                if(crusetbyte.length>datalen[0])
+                {
+                    String temp = getString(R.string.iuput_lenth_error);
+                    Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                for( i=0;i<datalen[0];i++)
+                {
+                    if(i<crusetbyte.length)
+                    {
+                        sendbuf[16+i]=crusetbyte[i];
+                    }
+                    else
+                        sendbuf[16+i]=(byte)0x00;
+                }
+                CodeFormat.crcencode(sendbuf);
+                sendbufs.add(sendbuf);
+                break;
+            case 201:
+//                mResultSettingstr.add(mTextSetValues[0].getText().toString());
+                mResultSettingstr.clear();
+                for(i=0;i<5;i++)
+                {
+                    mResultSettingstr.add(mTextSetValues[i].getText().toString());
+                }
+                mReturnReg = 201;
+                for(i=0;i<mRegs.length;i++)
+                {
+                    if(mRegs[i]==201)
+                    {
+                        sendbuf=new byte[datalen[i] +18];
+                        sendbuf[0]= (byte) 0xFD;
+                        sendbuf[3]= (byte) ((datalen[0]+13)%0x100);
+                        sendbuf[5]=0x15;
+                        sendbuf[14]= (byte) ((mRegs[i])%0x100);
+                        String APN="";
+                        APN=mTextSetValues[0].getText()+","+mTextSetValues[1].getText()+","+mTextSetValues[2].getText();
+                        crusetbyte = APN.getBytes();
+//                            Log.d("zl",APN);
+                        if(crusetbyte.length>datalen[0])
+                        {
+                            String temp = getString(R.string.iuput_lenth_error);
+                            Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        int lenth= datalen[i];
+                        //   int lenth2 =crusetbyte.length;
+                        for(j=0;j<lenth;j++)
+                        {
+                            if(j<crusetbyte.length)
+                            {
+                                sendbuf[16+j]=crusetbyte[j];
+                            }
+                        }
+                        CodeFormat.crcencode(sendbuf);
+                        sendbufs.add(sendbuf);
+                    }
+                    else if(mRegs[i]==202)
+                    {
+                        if(isboolIP(mTextSetValues[3].getText().toString())==false)
+                        {
+                            String temp = getString(R.string.device_station_ip)+" "+getString(R.string.wrong);
+                            Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        sendbuf=new byte[datalen[i] +18];
+                        sendbuf[0]= (byte) 0xFD;
+                        sendbuf[3]= (byte) ((datalen[i]+13)%0x100);
+                        sendbuf[5]=0x15;
+                        sendbuf[14]= (byte) ((mRegs[i])%0x100);
+
+                        String ipmessage=mTextSetValues[3].getText().toString();
+                        int index =ipmessage.indexOf('.');
+                        sendbuf[16] = (byte) (Integer.valueOf(ipmessage.substring(0,index)).shortValue()%0x100);
+                        ipmessage = ipmessage.substring(index+1);
+
+                        index = ipmessage.indexOf('.');
+                        sendbuf[17] = (byte) (Integer.valueOf(ipmessage.substring(0,index)).shortValue()%0x100);
+                        ipmessage = ipmessage.substring(index+1);
+
+                        index = ipmessage.indexOf('.');
+                        sendbuf[18] = (byte) (Integer.valueOf(ipmessage.substring(0,index)).shortValue()%0x100);
+                        ipmessage = ipmessage.substring(index+1);
+
+                        sendbuf[19] = (byte) (Integer.valueOf(ipmessage).shortValue()%0x100);
+                        String temp;
+                        if(isNumeric(mTextSetValues[4].getText().toString())==false)
+                        {
+                            temp = getString(R.string.device_station_port)+" "+getString(R.string.wrong);
+                            Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        //short portvalue = mTextSetValues[4].getText().toString();
+                        temp = mTextSetValues[4].getText().toString();
+
+                        short port = Integer.valueOf(temp).shortValue();
+
+                        ByteBuffer buf = ByteBuffer.allocateDirect(2);
+                        buf.order(ByteOrder.LITTLE_ENDIAN);
+                        buf.putShort(port);
+                        buf.rewind();
+                        buf.get(sendbuf,20,2);
+                        CodeFormat.crcencode(sendbuf);
+                        sendbufs.add(sendbuf);
+                    }
+                }
+                break;
+            case 208:
+//                mResultSettingstr.clear();
+
+                mReturnReg = 208;
+                String temoinfo;
+                String temoinfo1;
+                sendbuf=new byte[datalen[0] +18];
+                sendbuf[0]= (byte) 0xFD;
+                sendbuf[3]= (byte) ((datalen[0]+13)%0x100);
+                sendbuf[5]=0x15;
+                sendbuf[14]= (byte) ((mRegs[0])%0x100);
+
+                ByteBuffer buf = ByteBuffer.allocateDirect(4);
+                buf.order(ByteOrder.LITTLE_ENDIAN);
+
+                buf.putInt(Integer.valueOf(registerinfosel[spinercurselectvalue][2]).intValue());
+                buf.rewind();
+                buf.get(sendbuf,16,1);
+                CodeFormat.crcencode(sendbuf);
+                sendbufs.add(sendbuf);
+                if(spinercurselectvalue == 0)
+                {
+                    mResultSettingstr.add(mTextSetValues[0].getText().toString());
+                    if(isNumeric(mTextSetValues[0].getText().toString())==false)
+                    {
+                        String temp = getString(R.string.device_report_freq)+" "+getString(R.string.wrong);
+                        Toast.makeText(StuViDeviceItemSettingActivity.this,temp,Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    sendbuf=new byte[datalen[1] +18];
+                    sendbuf[0]= (byte) 0xFD;
+                    sendbuf[3]= (byte) ((datalen[1]+13)%0x100);
+                    sendbuf[5]=0x15;
+                    sendbuf[14]= (byte) ((mRegs[1])%0x100);
+
+                    String ipmessage=mTextSetValues[0].getText().toString();
+                    short freq = Integer.valueOf(ipmessage).shortValue();
+
+                    buf = ByteBuffer.allocateDirect(2);
+                    buf.order(ByteOrder.LITTLE_ENDIAN);
+                    buf.putShort(freq);
+                    buf.rewind();
+                    buf.get(sendbuf,16,2);
+                    CodeFormat.crcencode(sendbuf);
+                    sendbufs.add(sendbuf);
+                }
+                else if(spinercurselectvalue == 1)
+                {
+                    sendbuf=new byte[datalen[2] +18];
+                    sendbuf[0]= (byte) 0xFD;
+                    sendbuf[3]= (byte) ((datalen[2]+13)%0x100);
+                    sendbuf[5]=0x15;
+                    sendbuf[14]= (byte) ((mRegs[2])%0x100);
+                    //     byte[] timebyte =new byte[12];
+                    for(i=0;i<12;i++)
+                    {
+                        sendbuf[i+16]= (byte) 0xff;
+                    }
+                    temoinfo="";
+                    ArrayList<String> timeinfo=new ArrayList<>();
+                    for(i=0;i<mslidebuts.size();i++)
+                    {
+                        int index=-1;
+                        if(mslidebuts.get(i).isChecked())
+                        {
+                            temoinfo1 = timeviews[i].getText().toString();
+                            timeinfo.add(temoinfo1);
+                        }
+                    }
+                    String tempreturn="";
+                    for(i=0;i<timeinfo.size();i++)
+                    {
+                        String time1;
+                        time1=timeinfo.get(i);
+                        tempreturn+=time1;
+                        tempreturn+=";";
+                        j=time1.indexOf(':');
+                        sendbuf[i*3+1+16]= Byte.valueOf(time1.substring(0,j));
+                        sendbuf[i*3+2+16]= Byte.valueOf(time1.substring(j+1));
+                    }
+                    mResultSettingstr.add(tempreturn);
+                    CodeFormat.crcencode(sendbuf);
+                    sendbufs.add(sendbuf);
+                }
+                break;
+            default:
+                break;
+        }
+
+        String readOutMsg = DigitalTrans.byte2hex(sendbufs.get(0));
+
+        Log.d("zl",CodeFormat.byteToHex(sendbufs.get(0),sendbufs.get(0).length));
+        misStart = true;
+        mCurCMD = 0;
+        Intent intent= getIntent();
+        intent.putExtra("ReturnReg",mReturnReg);
+        intent.putExtra("returnregvalue",mResultSettingstr);
+        verycutstatus(readOutMsg);
+    }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//    }
 }

@@ -329,41 +329,7 @@ public class STUVISettingFragment extends BaseFragment {
 
         @Override
         public void onClick(View v) {
-            int index=0;
-            int i;
-            int tempint;
-            byte[] adsinf0;//={1,3,105, (byte) 0xC7};
-            mIsatart=true;
-            adsinf0=new byte[baseinfo.length];
-            for(i=0;i<adsinf0.length;i++)
-            {
-                tempint=Integer.valueOf(baseinfo[i][0]);
-                adsinf0[i]= (byte) (tempint%0x100);
-            }
-            mIndexcmd=0;
-            for(int j=0;j<adsinf0.length;j++)
-            {
-                senddatabuf[j][index++]= (byte) 0xfd;
-                senddatabuf[j][index++]= (byte) 0x00;
-                senddatabuf[j][index++]= (byte) 0x00;
-                senddatabuf[j][index++]= 13;
-                senddatabuf[j][index++]= (byte) 0x00;
-                senddatabuf[j][index++]= (byte) 0x19;
-                for(i=0;i<8;i++)
-                {
-                    senddatabuf[j][index++]= (byte) 0x00;
-                }
-                senddatabuf[j][index++]= adsinf0[j];
-                senddatabuf[j][index++]= (byte) 0x00;
-                CodeFormat.crcencode(senddatabuf[j]);
-                index=0;
-            }
-            if(mIndexcmd<adsinf0.length)
-            {
-                String readOutMsg = DigitalTrans.byte2hex(senddatabuf[mIndexcmd]);
-                verycutstatus(readOutMsg);
-            }
-
+            Readdeviceinfo();
         }
     }
 
@@ -549,4 +515,70 @@ public class STUVISettingFragment extends BaseFragment {
 
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 1)
+        {
+            ArrayList<String> valuestr = data.getStringArrayListExtra("returnregvalue");
+           switch (data.getIntExtra("ReturnReg",-1))
+           {
+               case 103:
+                   mDeviceserialnumberTX.setText(valuestr.get(0));
+                   break;
+               case 201:
+                   mAPNTX .setText(valuestr.get(0));
+                   mApnUsernameTX .setText(valuestr.get(1));
+                   mApnPasswordTX .setText(valuestr.get(2));
+                   mMainStationIPTX .setText(valuestr.get(3));
+                   mMainStationPortTX .setText(valuestr.get(4));
+                   break;
+               case 208:
+                   mUpLoadTypeTX.setText(valuestr.get(0));
+                   mUploadValueTX.setText(valuestr.get(1));
+                   break;
+                   default:
+                       break;
+           }
+        }
+    }
+    private void Readdeviceinfo()
+    {
+        int index=0;
+        int i;
+        int tempint;
+        byte[] adsinf0;//={1,3,105, (byte) 0xC7};
+        mIsatart=true;
+        adsinf0=new byte[baseinfo.length];
+        for(i=0;i<adsinf0.length;i++)
+        {
+            tempint=Integer.valueOf(baseinfo[i][0]);
+            adsinf0[i]= (byte) (tempint%0x100);
+        }
+        mIndexcmd=0;
+        for(int j=0;j<adsinf0.length;j++)
+        {
+            senddatabuf[j][index++]= (byte) 0xfd;
+            senddatabuf[j][index++]= (byte) 0x00;
+            senddatabuf[j][index++]= (byte) 0x00;
+            senddatabuf[j][index++]= 13;
+            senddatabuf[j][index++]= (byte) 0x00;
+            senddatabuf[j][index++]= (byte) 0x19;
+            for(i=0;i<8;i++)
+            {
+                senddatabuf[j][index++]= (byte) 0x00;
+            }
+            senddatabuf[j][index++]= adsinf0[j];
+            senddatabuf[j][index++]= (byte) 0x00;
+            CodeFormat.crcencode(senddatabuf[j]);
+            index=0;
+        }
+        if(mIndexcmd<adsinf0.length)
+        {
+            String readOutMsg = DigitalTrans.byte2hex(senddatabuf[mIndexcmd]);
+            verycutstatus(readOutMsg);
+        }
+    }
+
 }
