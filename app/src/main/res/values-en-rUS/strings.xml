@@ -1,0 +1,166 @@
+<resources>
+    <string name="app_name">STU-I</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--  BluetoothChat -->
+    <string name="send">Send</string>
+    <string name="not_connected">not connect stu</string>
+    <string name="bt_not_enabled_leaving">bluetooth not be opened</string>
+    <string name="title_connecting">connecting...</string>
+    <string name="title_connected_to">connected to:</string>
+    <string name="title_not_connected">not connected</string>
+    <string name="reading">Read...</string>
+
+    <!--  DeviceListActivity -->
+    <string name="scanning">查找设备</string>
+    <string name="select_device">选择需要连接的设备</string>
+    <string name="none_paired">没有已配对设备</string>
+    <string name="none_found">没有发现设备</string>
+    <string name="title_paired_devices">已配对设备</string>
+    <string name="title_other_devices">其他可用设备</string>
+    <string name="button_scan">查找设备</string>
+    <string name="point">.</string>
+
+    <string name="hour_hint">时</string>
+    <string name="minute_hint">分</string>
+    <string name="second_hint">秒</string>
+
+    <!--    警告及提示-->
+    <string name="receive_data_too_short">the received bytes is too short</string>
+    <string name="receive_data_lenth_error">the received bytes not correct</string>
+    <string name="iuput_lenth_error">the lenth of input bytes too long </string>
+    <string name="correct">correct</string>
+    <string name="wrong">wrong</string>
+    <string name="timeout">time out</string>
+    <!--    各个页面title-->
+    <string name="stu_i_title1">STU Setting</string>
+    <string name="stu_i_title2">SSV Setting</string>
+    <string name="stu_i_title3">EVC Setting</string>
+    <string name="stu_i_title4">Analog setting</string>
+    <string name="stu_i_title5">Gas Detector Setting</string>
+
+<!--    STU-I主参数设定-->
+    <string name="device_describe">Product Model</string>
+    <string name="device_firmware">Software Version</string>
+    <string name="device_usersID">ID</string>
+    <string name="device_local_time">Time</string>
+    <string name="device_wireless_module">wireless Type</string>
+    <string name="device_connect_parameter">Network Setting</string>
+    <string name="device_connect_station">IP</string>
+    <string name="device_report_type">Update Setting</string>
+    <string name="device_report_freq">By Minutes</string>
+    <string name="device_report_firm_time">Fixed time</string>
+
+    <string name="device_apn">APN</string>
+    <string name="device_apn_username">PPP Username</string>
+    <string name="device_apn_password">PPP Password</string>
+    <string name="device_station_ip">IP</string>
+    <string name="device_station_port">Port</string>
+
+    <string name="device_button_action">Read</string>
+    <!-- set-i item setting -->
+    <string name="Please_select">Please select</string>
+    <string name="Time_set_result">Time is set</string>
+
+    <string-array name="hour_display">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+    </string-array>
+
+    <string-array name="minute_display">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+    </string-array>
+
+    <string-array name="week_display">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </string-array>
+
+
+</resources>

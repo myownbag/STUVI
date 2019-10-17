@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#1D8FFE" >
+
+        <ImageView
+            android:id="@+id/imgBackItemset"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/txt_titles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#FFF"
+            android:textSize="20sp" />
+        <ImageView
+            android:id="@+id/blustoothbut"
+            android:visibility="gone"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/bluetooth_searching" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/stu_i_selectitemspiner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/Please_select"
+            android:visibility="gone"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/stu_i_item_spiner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/currentset_item_addrspiner_lable"
+            android:layout_toRightOf="@+id/currentset_item_addrspiner_lable"
+            android:textColor="#444"
+            android:textSize="14sp"
+            android:autofillHints="请选择"/>
+    </RelativeLayout>
+    <!-- 分割线 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <RelativeLayout
+        android:id="@+id/stu_i_setting_item1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:background="#fff" >
+
+        <TextView
+            android:id="@+id/stu_i_setting_item_label1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/stu_i_setting_item_value1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/stu_i_setting_item_label1"
+            android:layout_toRightOf="@+id/stu_i_setting_item_label1"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+    <!-- 分割线 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <RelativeLayout
+        android:id="@+id/stu_i_setting_item2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:background="#fff" >
+        <TextView
+            android:id="@+id/stu_i_setting_item_label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:text="寄存器名称:"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/stu_i_setting_item_value2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/stu_i_setting_item_label2"
+            android:layout_toRightOf="@+id/stu_i_setting_item_label2"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+    <!-- 分割线 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <RelativeLayout
+    android:id="@+id/stu_i_setting_item3"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+        android:visibility="gone"
+    android:background="#fff" >
+
+
+
+    <TextView
+        android:id="@+id/stu_i_setting_item_label3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+
+        android:text="设置内容:"
+        android:textColor="#444"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/stu_i_setting_item_value3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:maxLines="10"
+        android:layout_toEndOf="@+id/stu_i_setting_item_label3"
+        android:layout_toRightOf="@+id/stu_i_setting_item_label3"
+        android:textColor="#444"
+        android:textSize="14sp" />
+</RelativeLayout>
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <RelativeLayout
+        android:id="@+id/stu_i_setting_item4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:background="#fff" >
+
+
+
+        <TextView
+            android:id="@+id/stu_i_setting_item_label4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:text="设置内容:"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/stu_i_setting_item_value4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:maxLines="10"
+            android:layout_toEndOf="@+id/stu_i_setting_item_label4"
+            android:layout_toRightOf="@+id/stu_i_setting_item_label4"
+            android:textColor="#444"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <RelativeLayout
+        android:id="@+id/stu_i_setting_item5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:background="#fff" >
+
+
+
+        <TextView
+            android:id="@+id/stu_i_setting_item_label5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:text="设置内容:"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/stu_i_setting_item_value5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:maxLines="10"
+            android:layout_toEndOf="@+id/stu_i_setting_item_label5"
+            android:layout_toRightOf="@+id/stu_i_setting_item_label5"
+            android:textColor="#444"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <LinearLayout
+        android:id="@+id/local_219_detail_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/local_219_lable1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="0dp"
+                android:text="时段1:"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:weightSum="10"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/local_219_lable1"
+                android:layout_toLeftOf="@id/local_219_checkbut_1"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                >
+                <TextView
+                    android:id="@+id/local_219_starttime1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    />
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:src="@drawable/sperate"
+                    />
+                <TextView
+                    android:id="@+id/local_219_endtime1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    />
+            </LinearLayout>
+            <gc.dtu.weeg.stuvi.myview.slidingbutton.SlidingToggleButton
+                android:id="@+id/local_219_checkbut_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#CFCFCF" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/local_219_lable2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="0dp"
+                android:text="时段2:"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:weightSum="10"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/local_219_lable2"
+                android:layout_toLeftOf="@id/local_219_checkbut_2"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                >
+                <TextView
+                    android:id="@+id/local_219_starttime2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:src="@drawable/sperate"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/local_219_endtime2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    />
+            </LinearLayout>
+            <gc.dtu.weeg.stuvi.myview.slidingbutton.SlidingToggleButton
+                android:id="@+id/local_219_checkbut_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:enabled="false"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#CFCFCF" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/local_219_lable3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="0dp"
+                android:text="时段3:"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:weightSum="10"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/local_219_lable3"
+                android:layout_toLeftOf="@id/local_219_checkbut_3"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                >
+                <TextView
+                    android:id="@+id/local_219_starttime3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:src="@drawable/sperate"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/local_219_endtime3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+            <gc.dtu.weeg.stuvi.myview.slidingbutton.SlidingToggleButton
+                android:id="@+id/local_219_checkbut_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#CFCFCF" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/local_219_lable4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="0dp"
+                android:text="时段1:"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:weightSum="10"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/local_219_lable4"
+                android:layout_toLeftOf="@id/local_219_checkbut_4"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                >
+                <TextView
+                    android:id="@+id/local_219_starttime4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:src="@drawable/sperate"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:id="@+id/local_219_endtime4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:background="@drawable/slidebuttonbackselect"
+                    android:enabled="false"
+                    />
+            </LinearLayout>
+            <gc.dtu.weeg.stuvi.myview.slidingbutton.SlidingToggleButton
+                android:id="@+id/local_219_checkbut_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:id="@+id/local_extraitem_set"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            />
+        <Button
+            android:id="@+id/tv_itemsettings_btn_write"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:background="@drawable/round_button"
+            android:text="写入数据"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+</LinearLayout>

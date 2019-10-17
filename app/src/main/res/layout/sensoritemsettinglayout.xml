@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#1D8FFE" >
+
+        <ImageView
+            android:id="@+id/Sensor_imgBackItemset"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:id="@+id/Sensor_item_txt_titles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#FFF"
+            android:textSize="20sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/sensor_select_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff" >
+        <TextView
+            android:id="@+id/sensor_set_item_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:text="请选择:"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/sensor_set_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/sensor_set_item_label"
+            android:layout_toRightOf="@+id/sensor_set_item_label"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+    <!-- 分割线 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+
+    <RelativeLayout
+        android:id="@+id/sensor_anolog_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff" >
+        <TextView
+            android:id="@+id/sensor_set_item_manual_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:text="请输入量程:(单位:KPa)"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/sensor_set_item_manual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/sensor_set_item_manual_label"
+            android:layout_toRightOf="@+id/sensor_set_item_manual_label"
+            android:textColor="#444"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <!-- 分割线 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <!--1213-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff" >
+        <TextView
+            android:id="@+id/sensor_set_item_hight_lable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:text="高报警:"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/sensor_set_item_hight_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/sensor_set_item_hight_lable"
+            android:layout_toRightOf="@id/sensor_set_item_hight_lable"
+            android:inputType="numberSigned|numberDecimal"
+            android:textColor="#444"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <!-- 分割线 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+    <!--234-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff" >
+        <TextView
+            android:id="@+id/sensor_set_item_low_lable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+
+            android:text="低报警:"
+            android:textColor="#444"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/sensor_set_item_low_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/sensor_set_item_low_lable"
+            android:layout_toRightOf="@+id/sensor_set_item_low_lable"
+            android:inputType="numberSigned|numberPassword"
+            android:textColor="#444"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <!-- 分割线 -->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#CFCFCF" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/buttsensorcommite"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:background="@drawable/round_button"
+            android:text="确定"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+</LinearLayout>

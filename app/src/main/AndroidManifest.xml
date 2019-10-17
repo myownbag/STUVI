@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="gc.dtu.weeg.stuvi">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="gc.dtu.weeg.stuvi.MainActivity"
+                  android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="gc.dtu.weeg.stuvi.bluetooth.DeviceListActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:label="@string/select_device"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Dialog" />
+        <activity android:name="gc.dtu.weeg.stuvi.utils.ItemSetingActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="gc.dtu.weeg.stuvi.utils.SensoritemsettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="gc.dtu.weeg.stuvi.utils.InstrumemtItemseetingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="gc.dtu.weeg.stuvi.utils.NbServiceAddrInputActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="gc.dtu.weeg.stuvi.utils.FreezeDataDrawChartActivit"
+            android:screenOrientation="landscape"/>
+        <activity android:name="gc.dtu.weeg.stuvi.hexfile2bin.FileBrowserActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name="gc.dtu.weeg.stuvi.utils.StuViDeviceItemSettingActivity"
+            android:screenOrientation="portrait"
+            />
+    </application>
+</manifest>
