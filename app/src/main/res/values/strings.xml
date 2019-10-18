@@ -31,6 +31,7 @@
     <string name="correct">正确</string>
     <string name="wrong">错误</string>
     <string name="timeout">超时了</string>
+    <string name="STU_SETTING_RESULT_OK">数据设置成功</string>
 
 <!--    各个页面title-->
     <string name="stu_i_title1">STU设置</string>
@@ -58,6 +59,8 @@
 
     <string name="device_button_action">读 取</string>
     <string name="device_button_action_write">写入数据</string>
+    <string name="device_button_action_CMD">命令执行</string>
+    <string name="ANALOG_PARAMETER_ERROR">数据未填充完整</string>
 
 <!-- set-i item setting -->
     <string name="Please_select">请选择</string>
@@ -83,6 +86,21 @@
     <string name="EVC_CHECK_BIT_NONE">无</string>
     <string name="EVC_COM_FRAG_PLEASE_SELECT">请选择</string>
     <string name="EVC_ADDR_SET_ERROR">仪表地址不能大于256</string>
+
+<!--    analog setting information -->
+    <string name="ANALOG_INPUT1">AI1(进口压力)</string>
+    <string name="ANALOG_INPUT2">AI2(出口压力)</string>
+    <string name="ANALOG_INPUT_LIMITE">压力范围</string>
+    <string name="ANALOG_UPPER_LIMITE">上限</string>
+    <string name="ANALOG_LOWER_LIMITE">下限</string>
+    <string name="ANALOG_SCAN_FREQUENCE">扫描频率</string>
+    <string name="ANALOG_Acquisition_FREQUENCE">采集频率</string>
+    
+    
+<!--    Dialog information setting -->
+    <string name="DIALOG_INFORMATION">操作提示</string>
+    <string name="DIALOG_ACTION_INFORMATION">单击条目可以进行设置</string>
+    <string name="DIALOG_BUTTON_TEXT">确定</string>
 
 
     <string-array name="hour_display">

@@ -45,7 +45,7 @@ public class GasSensorSetFragment extends BaseFragment {
     int m_position;
 
     //基础数据
-    public  String gassensorinfo[][]=
+    public static String gassensorinfo[][]=
             {
                     {"3","无","0"},
                     {"3","WS2100-TTL","65534"},

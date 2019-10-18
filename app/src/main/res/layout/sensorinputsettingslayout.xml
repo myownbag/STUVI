@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="5"
+    android:weightSum="4"
     android:orientation="vertical">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:id="@+id/sensor_press1set"
     android:layout_weight="1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="第一路压力:"
+            android:text="@string/ANALOG_INPUT1"
             android:textColor="#444"
             android:textSize="14sp" />
 
@@ -49,7 +50,19 @@
             android:textColor="#444"
             android:textSize="14sp" />
     </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/ANALOG_INPUT_LIMITE"
+            />
 
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -65,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="高报警(KPa):"
+            android:text="@string/ANALOG_UPPER_LIMITE"
             android:textColor="#444"
             android:textSize="14sp" />
 
@@ -90,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="低报警(KPa):"
+            android:text="@string/ANALOG_LOWER_LIMITE"
             android:textColor="#444"
             android:textSize="14sp" />
 
@@ -129,7 +142,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="第二路压力:"
+            android:text="@string/ANALOG_INPUT2"
             android:textColor="#444"
             android:textSize="14sp" />
 
@@ -157,6 +170,18 @@
             android:textColor="#444"
             android:textSize="14sp" />
     </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/ANALOG_INPUT_LIMITE"
+            />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -173,7 +198,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="高报警(KPa):"
+            android:text="@string/ANALOG_UPPER_LIMITE"
             android:textColor="#444"
             android:textSize="14sp" />
 
@@ -198,7 +223,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:text="低报警(KPa):"
+            android:text="@string/ANALOG_LOWER_LIMITE"
             android:textColor="#444"
             android:textSize="14sp" />
 
@@ -223,6 +248,7 @@
         android:background="#CFCFCF" />
 <LinearLayout
     android:layout_width="match_parent"
+    android:visibility="gone"
     android:layout_height="0dp"
     android:layout_weight="1"
     android:id="@+id/sensor_temperatureset"
@@ -325,6 +351,7 @@
             android:id="@+id/sensor_timeset"
             android:orientation="vertical">
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#fff" >
@@ -368,7 +395,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:text="扫描时间(秒):"
+                    android:text="@string/ANALOG_SCAN_FREQUENCE"
                     android:textColor="#444"
                     android:textSize="14sp" />
 
@@ -393,7 +420,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginStart="10dp"
-                    android:text="记录时间(分):"
+                    android:text="@string/ANALOG_Acquisition_FREQUENCE"
                     android:textColor="#444"
                     android:textSize="14sp" />
 
@@ -436,7 +463,7 @@
                 android:layout_marginStart="20dp"
                 android:textSize="16sp"
                 android:background="@drawable/round_button"
-                android:text="命令执行"
+                android:text="@string/device_button_action_CMD"
                 android:textColor="#fff" />
 
         </LinearLayout>

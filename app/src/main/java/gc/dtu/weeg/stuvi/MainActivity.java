@@ -119,15 +119,15 @@ public class MainActivity extends FragmentActivity {
 //    public RealtimedataFregment fregment2;
     public StuViSSVSettingFragment fregment2;
     public InstrumentInputFregment   fregment3;   //FrozendataFregment
-    public LocalsettngsFregment fregment4;
-    public SensorInputFregment  fregment5;
-    public InstrumentInputFregment fregment6;
-    public PressSensoraddSetframent fregment7;
-    public NBRegisiterfragment      fregment8;
-    public AppVersioninfoFregment   fregment9;
-    public Hex2BinConvertFragment   fragment10;
-    public GasSensorSetFragment     fragment11;
-    public GateStatusControlFragment fragment12;
+    public SensorInputFregment fregment4;    //LocalsettngsFregment
+    public GasSensorSetFragment  fregment5;
+//    public InstrumentInputFregment fregment6;
+//    public PressSensoraddSetframent fregment7;
+//    public NBRegisiterfragment      fregment8;
+//    public AppVersioninfoFregment   fregment9;
+//    public Hex2BinConvertFragment   fragment10;
+//    public GasSensorSetFragment     fragment11;
+//    public GateStatusControlFragment fragment12;
 
 
     //接口
@@ -308,10 +308,10 @@ public class MainActivity extends FragmentActivity {
 //                    }
                     break;
                 case BluetoothState.MESSAGE_CONVERT_INFO:
-                    if(mCurrentpage==fragment10)
-                    {
-                        fragment10.OnFileConvertResult(msg.arg1);
-                    }
+//                    if(mCurrentpage==fragment10)
+//                    {
+//                        fragment10.OnFileConvertResult(msg.arg1);
+//                    }
                     break;
             }
         }
@@ -352,74 +352,74 @@ public class MainActivity extends FragmentActivity {
         fregment3.setArguments(bundle2);
         fragments.add(fregment3);
 
-        fregment4 = new LocalsettngsFregment();
+        fregment4 = new SensorInputFregment();
         Bundle bundle3 = new Bundle();
         bundle3.putInt("position",index);
         bundle3.putString("extra",titles[index++]);
         fregment4.setArguments(bundle3);
         fragments.add(fregment4);
 
-        fregment5 = new SensorInputFregment();
+        fregment5 = new GasSensorSetFragment();
         Bundle bundle4 = new Bundle();
         bundle4.putInt("position",index);
         bundle4.putString("extra",titles[index++]);
         fregment5.setArguments(bundle4);
         fragments.add(fregment5);
 
-        //添加气体传感器的设置
-        fragment11 = new GasSensorSetFragment();
-        Bundle bundle11 = new Bundle();
-        bundle11.putInt("position",index);
-        bundle11.putString("extra",titles[index++]);
-        fragment11.setArguments(bundle11);
-        fragments.add(fragment11);
-
-        fregment6 = new InstrumentInputFregment();
-        Bundle bundle5 = new Bundle();
-        bundle5.putInt("position",index);
-        bundle5.putString("extra",titles[index++]);
-        fregment6.setArguments(bundle5);
-        fragments.add(fregment6);
-
-        fregment7 =new PressSensoraddSetframent();
-        Bundle bundle6 = new Bundle();
-        bundle6.putInt("position",index);
-        bundle6.putString("extra",titles[index++]);
-        fregment7.setArguments(bundle6);
-        fragments.add(fregment7);
-
-        fregment8 =new NBRegisiterfragment();
-        Bundle bundle7 = new Bundle();
-        bundle7.putInt("position",index);
-        bundle7.putString("extra",titles[index++]);
-        fregment8.setArguments(bundle7);
-        fragments.add(fregment8);
-
-//        fragment12 = new GateStatusControlFragment();
-//        Bundle bundle12 = new Bundle();
-//        bundle12.putInt("position",index);
-//        bundle12.putString("extra",titles[index++]);
-//        fragment12.setArguments(bundle12);
-//        fragments.add(fragment12);
-
-        fregment9 =new AppVersioninfoFregment();
-        Bundle bundle8= new Bundle();
-        bundle8.putInt("position",index);
-        bundle8.putString("extra",titles[index++]);
-        fregment9.setArguments(bundle8);
-        fragments.add(fregment9);
-
-//        sixthFragment = new Pressure2Fragment();
+//        //添加气体传感器的设置
+//        fragment11 = new GasSensorSetFragment();
+//        Bundle bundle11 = new Bundle();
+//        bundle11.putInt("position",index);
+//        bundle11.putString("extra",titles[index++]);
+//        fragment11.setArguments(bundle11);
+//        fragments.add(fragment11);
+//
+//        fregment6 = new InstrumentInputFregment();
+//        Bundle bundle5 = new Bundle();
+//        bundle5.putInt("position",index);
+//        bundle5.putString("extra",titles[index++]);
+//        fregment6.setArguments(bundle5);
+//        fragments.add(fregment6);
+//
+//        fregment7 =new PressSensoraddSetframent();
 //        Bundle bundle6 = new Bundle();
+//        bundle6.putInt("position",index);
 //        bundle6.putString("extra",titles[index++]);
-//        sixthFragment.setArguments(bundle6);
-//        fragments.add(sixthFragment);
-        fragment10 = new Hex2BinConvertFragment();
-        Bundle bundle9= new Bundle();
-        bundle9.putInt("position",index);
-        bundle9.putString("extra",titles[index++]);
-        fragment10.setArguments(bundle9);
-        fragments.add(fragment10);
+//        fregment7.setArguments(bundle6);
+//        fragments.add(fregment7);
+//
+//        fregment8 =new NBRegisiterfragment();
+//        Bundle bundle7 = new Bundle();
+//        bundle7.putInt("position",index);
+//        bundle7.putString("extra",titles[index++]);
+//        fregment8.setArguments(bundle7);
+//        fragments.add(fregment8);
+//
+////        fragment12 = new GateStatusControlFragment();
+////        Bundle bundle12 = new Bundle();
+////        bundle12.putInt("position",index);
+////        bundle12.putString("extra",titles[index++]);
+////        fragment12.setArguments(bundle12);
+////        fragments.add(fragment12);
+//
+//        fregment9 =new AppVersioninfoFregment();
+//        Bundle bundle8= new Bundle();
+//        bundle8.putInt("position",index);
+//        bundle8.putString("extra",titles[index++]);
+//        fregment9.setArguments(bundle8);
+//        fragments.add(fregment9);
+//
+////        sixthFragment = new Pressure2Fragment();
+////        Bundle bundle6 = new Bundle();
+////        bundle6.putString("extra",titles[index++]);
+////        sixthFragment.setArguments(bundle6);
+////        fragments.add(sixthFragment);
+//        fragment10 = new Hex2BinConvertFragment();
+//        Bundle bundle9= new Bundle();
+//        bundle9.putInt("position",index);
+//        bundle9.putString("extra",titles[index++]);
+//        fragment10.setArguments(bundle9);
+//        fragments.add(fragment10);
 
         mPagerAdater=new CNKFixedPagerAdapter(getSupportFragmentManager());
         mPagerAdater.setTitles(titles);
@@ -501,7 +501,8 @@ public class MainActivity extends FragmentActivity {
             getString(R.string.stu_i_title4),
             getString(R.string.stu_i_title5),
 //                "1","2","3","4","5",
-                "气体传感器接入", "仪表接入","传感器调试","NB业务注册",/*"阀门控制",*/"版本信息","固件升级"};
+//               "气体传感器接入", "仪表接入","传感器调试","NB业务注册","阀门控制","版本信息","固件升级"
+        };
         mDialog = CustomDialog.createProgressDialog(this, Constants.TimeOutSecond, new CustomDialog.OnTimeOutListener() {
             @Override
             public void onTimeOut(CustomDialog dialog) {

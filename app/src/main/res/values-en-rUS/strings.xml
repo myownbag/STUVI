@@ -32,6 +32,7 @@
     <string name="correct">correct</string>
     <string name="wrong">wrong</string>
     <string name="timeout">time out</string>
+    <string name="STU_SETTING_RESULT_OK">STU-I Set Success</string>
     <!--    各个页面title-->
     <string name="stu_i_title1">STU Setting</string>
     <string name="stu_i_title2">SSV Setting</string>
@@ -59,6 +60,9 @@
 
     <string name="device_button_action">Read</string>
     <string name="device_button_action_write">Write</string>
+    <string name="device_button_action_CMD">Send Command</string>
+    <string name="ANALOG_PARAMETER_ERROR">Parameter is Incomplete</string>
+
     <!-- set-i item setting -->
     <string name="Please_select">Please select</string>
     <string name="Time_set_result">Time is set</string>
@@ -84,6 +88,20 @@
     <string name="EVC_CHECK_BIT_NONE">None</string>
     <string name="EVC_COM_FRAG_PLEASE_SELECT">Please Select</string>
     <string name="EVC_ADDR_SET_ERROR">EVC Address can not be larger than 256</string>
+
+    <!--    analog setting information -->
+    <string name="ANALOG_INPUT1">AI1(Inlet pressure)</string>
+    <string name="ANALOG_INPUT2">AI2(Outlet pressure)</string>
+    <string name="ANALOG_INPUT_LIMITE">Pressure Limit</string>
+    <string name="ANALOG_UPPER_LIMITE">Upper pressure limit</string>
+    <string name="ANALOG_LOWER_LIMITE">Lower pressure limit</string>
+    <string name="ANALOG_SCAN_FREQUENCE">Scan Frequency</string>
+    <string name="ANALOG_Acquisition_FREQUENCE">Acquisition Frequency</string>
+
+    <!--    Dialog information setting -->
+    <string name="DIALOG_INFORMATION">操作提示</string>
+    <string name="DIALOG_ACTION_INFORMATION">单击条目可以进行设置</string>
+    <string name="DIALOG_BUTTON_TEXT">确定</string>
 
     <string-array name="hour_display">
         <item>0</item>

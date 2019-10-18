@@ -26,6 +26,7 @@ import java.util.List;
 
 import gc.dtu.weeg.stuvi.MainActivity;
 import gc.dtu.weeg.stuvi.R;
+import gc.dtu.weeg.stuvi.fregment.LocalsettngsFregment;
 import gc.dtu.weeg.stuvi.myview.CustomDialog;
 import gc.dtu.weeg.stuvi.myview.LocalSetaddr201ExtrainfoView;
 import gc.dtu.weeg.stuvi.myview.LocalSetaddr219ExtraInfoView;
@@ -118,35 +119,35 @@ public class ItemSetingActivity extends Activity {
         String temp=mtextaddr.getText().toString();
 //        Log.d("zl","mainActivity.setOndataparse(new datacometoparse()) has been executed");
         mainActivity.setOndataparse(new datacometoparse());
-        for( i=0;i<mainActivity.fregment4.baseinfo.length;i++)
+        for(i=0; i< LocalsettngsFregment.baseinfo.length; i++)
         {
-            if(temp.equals(mainActivity.fregment4.baseinfo[i][0]))
+            if(temp.equals(LocalsettngsFregment.baseinfo[i][0]))
             {
                 mposition=i;
-                if("L".equals(mainActivity.fregment4.baseinfo[i][3]))
+                if("L".equals(LocalsettngsFregment.baseinfo[i][3]))
                 {
                     spinerconter.setVisibility(View.VISIBLE);
                     currentshow.setFocusable(false);
                     currentshow.setFocusableInTouchMode(false);
                     data_list= new ArrayList<>();
                     currsetvaluesettings=new int[30];
-                    for(j=0;j<mainActivity.fregment4.registerinfosel.length;j++)
+                    for(j=0;j<LocalsettngsFregment.registerinfosel.length;j++)
                     {
                         //int L_index=0;
-                        if(temp.equals(mainActivity.fregment4.registerinfosel[j][0]))
+                        if(temp.equals(LocalsettngsFregment.registerinfosel[j][0]))
                         {
-                            data_list.add(mainActivity.fregment4.registerinfosel[j][1]);
-                            currsetvaluesettings[data_list.size()-1]= Integer.valueOf(mainActivity.fregment4.registerinfosel[j][2]);
+                            data_list.add(LocalsettngsFregment.registerinfosel[j][1]);
+                            currsetvaluesettings[data_list.size()-1]= Integer.valueOf(LocalsettngsFregment.registerinfosel[j][2]);
                         }
                     }
                 }
-                else if("T".equals(mainActivity.fregment4.baseinfo[i][3]))
+                else if("T".equals(LocalsettngsFregment.baseinfo[i][3]))
                 {
                     spinerconter.setVisibility(View.GONE);
                 }
-                else if("E".equals(mainActivity.fregment4.baseinfo[i][3]))
+                else if("E".equals(LocalsettngsFregment.baseinfo[i][3]))
                 {
-                    String tempaddr= mainActivity.fregment4.baseinfo[i][0];
+                    String tempaddr= LocalsettngsFregment.baseinfo[i][0];
                     spinerconter.setVisibility(View.GONE);
                     currentshow.setFocusable(false);
                     currentshow.setFocusableInTouchMode(false);
@@ -256,11 +257,11 @@ public class ItemSetingActivity extends Activity {
                 Toast.makeText(ItemSetingActivity.this,"请输入填入的内容",Toast.LENGTH_LONG).show();
                 return;
             }
-            if(Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][2])==1
-                    ||Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][2])==10)
+            if(Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][2])==1
+                    ||Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][2])==10)
              {
 
-                 sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                 sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
                  sendbuf[16]= (byte) (currsetvalue%0x100);
 
                  if(sendbuf[14]==(byte)0xD0) //0xD0=208
@@ -273,7 +274,7 @@ public class ItemSetingActivity extends Activity {
                      sendbuf[0]= (byte) 0xFD;
                      sendbuf[3]= (byte) ((datalen+13)%0x100);
                      sendbuf[5]=0x15;
-                     sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                     sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
                      switch(currsetvalue)
                      {
                          case 1:
@@ -350,7 +351,7 @@ public class ItemSetingActivity extends Activity {
                 sendbuf[0]= (byte) 0xFD;
                 sendbuf[3]= (byte) ((datalen+13)%0x100);
                 sendbuf[5]=0x15;
-                sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
                 String [] ipanport=new String[5];
                 ipanport[0]="";
                 for(int ichar=0;ichar<mytestbyte.length;ichar++)
@@ -403,7 +404,7 @@ public class ItemSetingActivity extends Activity {
                 sendbuf[0]= (byte) 0xFD;
                 sendbuf[3]= (byte) ((datalen+13)%0x100);
                 sendbuf[5]=0x15;
-                sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
                  int spacetime = Integer.valueOf(temp);
                 if (spacetime<1||spacetime>10000)
                 {
@@ -423,7 +424,7 @@ public class ItemSetingActivity extends Activity {
                 sendbuf[0]= (byte) 0xFD;
                 sendbuf[3]= (byte) ((datalen+13)%0x100);
                 sendbuf[5]=0x15;
-                sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
                 //int spacetime = Integer.valueOf(temp);
                 for( i=0;i<datalen;i++)
                 {
@@ -474,7 +475,7 @@ public class ItemSetingActivity extends Activity {
                 sendbuf[0]= (byte) 0xFD;
                 sendbuf[3]= (byte) ((datalen+13)%0x100);
                 sendbuf[5]=0x15;
-                sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
 
                 if(crusetbyte.length>datalen)
                 {
@@ -505,7 +506,7 @@ public class ItemSetingActivity extends Activity {
                 sendbuf[0]= (byte) 0xFD;
                 sendbuf[3]= (byte) ((datalen+13)%0x100);
                 sendbuf[5]=0x15;
-                sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
                 if(settings.length>datalen)
                 {
                     Toast.makeText(ItemSetingActivity.this,"输入字节超出长度",Toast.LENGTH_SHORT).show();
@@ -578,7 +579,7 @@ public class ItemSetingActivity extends Activity {
                 sendbuf[0]= (byte) 0xFD;
                 sendbuf[3]= (byte) ((datalen+13)%0x100);
                 sendbuf[5]=0x15;
-                sendbuf[14]= (byte) (Integer.valueOf(mainActivity.fregment4.baseinfo[mposition][0])%0x100);
+                sendbuf[14]= (byte) (Integer.valueOf(LocalsettngsFregment.baseinfo[mposition][0])%0x100);
 
                 if(crusetbyte.length>datalen)
                 {

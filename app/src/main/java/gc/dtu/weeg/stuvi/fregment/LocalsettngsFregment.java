@@ -49,7 +49,7 @@ public class LocalsettngsFregment extends BaseFragment {
     //把当前的模块选择项进行保存
     String mModuleType="";
     //byte[] reg221datacontent = new byte[23];
-    public String[][] baseinfo=
+    public static String[][] baseinfo=
     {
             {"100","连接设备属性","1","L",},
             {"101","设备供电方式","1","L"},
@@ -68,7 +68,7 @@ public class LocalsettngsFregment extends BaseFragment {
             {"219","时间段传输设置","14","E"},
             {"221","月高峰采集传输","23","E"},
     };
-    public String[][] registerinfosel=
+    public static String[][] registerinfosel=
             {
 //                    {"100","","-1"},
                     {"100","热量表采集","1"},

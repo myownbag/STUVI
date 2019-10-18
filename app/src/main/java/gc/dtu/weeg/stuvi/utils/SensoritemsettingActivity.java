@@ -26,6 +26,8 @@ import java.util.Map;
 
 import gc.dtu.weeg.stuvi.MainActivity;
 import gc.dtu.weeg.stuvi.R;
+import gc.dtu.weeg.stuvi.fregment.GasSensorSetFragment;
+import gc.dtu.weeg.stuvi.fregment.SensorInputFregment;
 
 
 public class SensoritemsettingActivity extends Activity {
@@ -92,14 +94,14 @@ public class SensoritemsettingActivity extends Activity {
             String tempcontent=intent.getStringExtra("item1");
             if(position==1||position==2)
             {
-                for(int i=0;i<mainActivity.fregment5.sensorinfo.length;i++)
+                for(int i = 0; i< SensorInputFregment.sensorinfo.length; i++)
                 {
-                    if(mainActivity.fregment5.sensorinfo[i][0]=="1")
+                    if(SensorInputFregment.sensorinfo[i][0]=="1")
                     {
-                        listcontent.add(mainActivity.fregment5.sensorinfo[i][1]);
-                        listvalue.add(mainActivity.fregment5.sensorinfo[i][2]);
+                        listcontent.add(SensorInputFregment.sensorinfo[i][1]);
+                        listvalue.add(SensorInputFregment.sensorinfo[i][2]);
 
-                        if(tempcontent.equals(mainActivity.fregment5.sensorinfo[i][1]))
+                        if(tempcontent.equals(SensorInputFregment.sensorinfo[i][1]))
                         {
                             m_currentselect=listvalue.size()-1;
                             isfind=true;
@@ -117,13 +119,13 @@ public class SensoritemsettingActivity extends Activity {
             }
             else if(position==3)
             {
-                for(int i=0;i<mainActivity.fregment5.sensorinfo.length;i++)
+                for(int i=0;i<SensorInputFregment.sensorinfo.length;i++)
                 {
-                    if(mainActivity.fregment5.sensorinfo[i][0]=="2")
+                    if(SensorInputFregment.sensorinfo[i][0]=="2")
                     {
-                        listcontent.add(mainActivity.fregment5.sensorinfo[i][1]);
-                        listvalue.add(mainActivity.fregment5.sensorinfo[i][2]);
-                        if(tempcontent.equals(mainActivity.fregment5.sensorinfo[i][1]))
+                        listcontent.add(SensorInputFregment.sensorinfo[i][1]);
+                        listvalue.add(SensorInputFregment.sensorinfo[i][2]);
+                        if(tempcontent.equals(SensorInputFregment.sensorinfo[i][1]))
                         {
                             m_currentselect=listvalue.size()-1;
                         }
@@ -132,14 +134,14 @@ public class SensoritemsettingActivity extends Activity {
             }
             else if(position==5) //燃气报警器参数设置
             {
-                for(int i=0;i<mainActivity.fragment11.gassensorinfo.length;i++)
+                for(int i = 0; i< GasSensorSetFragment.gassensorinfo.length; i++)
                 {
-                    if(mainActivity.fragment11.gassensorinfo[i][0]=="3")
+                    if(GasSensorSetFragment.gassensorinfo[i][0]=="3")
                     {
-                        listcontent.add(mainActivity.fragment11.gassensorinfo[i][1]);
-                        listvalue.add(mainActivity.fragment11.gassensorinfo[i][2]);
+                        listcontent.add(GasSensorSetFragment.gassensorinfo[i][1]);
+                        listvalue.add(GasSensorSetFragment.gassensorinfo[i][2]);
 
-                        if(tempcontent.equals(mainActivity.fragment11.gassensorinfo[i][1]))
+                        if(tempcontent.equals(GasSensorSetFragment.gassensorinfo[i][1]))
                         {
                             m_currentselect=listvalue.size()-1;
                             isfind=true;
@@ -340,11 +342,11 @@ public class SensoritemsettingActivity extends Activity {
                 case 2:
                 case 3:
                 case 4:
-                    mainActivity.fregment5.updateallsettingitems(itemdata);
+                    mainActivity.fregment4.updateallsettingitems(itemdata);
                     break;
                 case 5:
                 case 6:
-                    mainActivity.fragment11.updateallsettingitems(itemdata);
+                    mainActivity.fregment5.updateallsettingitems(itemdata);
                     break;
             }
             SensoritemsettingActivity.this.setResult(1,intent);

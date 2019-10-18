@@ -68,18 +68,7 @@ public class SensorInputFregment extends BaseFragment {
     private SharedPreferences sp ;
 
     //基础数据
-    public  String sensorinfo[][]=
-            {
-                    {"1","无","0"},
-                    {"1","I2C","65534"},
-                    {"1","RS485_ExSAF","65533"},
-                    {"1","RS485_ANCN","65531"},
-                    {"1","转换模块","65532"},
-                    {"1","模拟量量程","65535"},
-
-                    {"2","无","0"},
-                    {"2","PT100","1"},
-            };
+    public static String[][] sensorinfo;
 
     @Nullable
     @Override
@@ -112,9 +101,26 @@ public class SensorInputFregment extends BaseFragment {
         mPress1unit=mView.findViewById(R.id.tv_sensor_type1_unit);
         mPress2unit=mView.findViewById(R.id.tv_sensor_type2_unit);
 
+        initbasedata();
         initview();
         initdata();
         return mView;
+    }
+
+    private void initbasedata() {
+
+        sensorinfo = new String[][]
+                {
+                        {"1",getString(R.string.EVC_CHECK_BIT_NONE),"0"},
+                        {"1","I2C","65534"},
+//                    {"1","RS485_ExSAF","65533"},
+//                    {"1","RS485_ANCN","65531"},
+//                    {"1","转换模块","65532"},
+//                    {"1","模拟量量程","65535"},
+//
+//                    {"2","无","0"},
+//                    {"2","PT100","1"},
+                };
     }
 
     private void initdata() {
@@ -161,7 +167,7 @@ public class SensorInputFregment extends BaseFragment {
                             }
                             else
                             {
-                                Toast.makeText(MainActivity.getInstance(),"数据未填充完整",Toast.LENGTH_SHORT).show();
+                               ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.ANALOG_PARAMETER_ERROR));
                             }
                         }
                     }
@@ -225,7 +231,7 @@ public class SensorInputFregment extends BaseFragment {
         MainActivity.getInstance().mDialog.dismiss();
         if(readOutBuf1.length<5)
         {
-            ToastUtils.showToast(getActivity(), "数据长度短");
+            ToastUtils.showToast(getActivity(), getString(R.string.receive_data_too_short));
 //                if(mIndexcmd<senddatabuf.length)
 //                {
 //                    String readOutMsg = DigitalTrans.byte2hex(senddatabuf[mIndexcmd]);
@@ -237,7 +243,7 @@ public class SensorInputFregment extends BaseFragment {
         {
             if(readOutBuf1[3]!=(readOutBuf1.length-5))
             {
-                ToastUtils.showToast(getActivity(), "数据长度异常");
+                ToastUtils.showToast(getActivity(), getString(R.string.receive_data_lenth_error));
 //                    if(mIndexcmd<senddatabuf.length)
 //                    {
 //                        String readOutMsg = DigitalTrans.byte2hex(senddatabuf[mIndexcmd]);
@@ -345,7 +351,7 @@ public class SensorInputFregment extends BaseFragment {
         }
         else
         {
-            Toast.makeText(MainActivity.getInstance(),"数据设置成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.getInstance(),getString(R.string.STU_SETTING_RESULT_OK),Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -372,7 +378,7 @@ public class SensorInputFregment extends BaseFragment {
            switch (vid)
            {
                case R.id.sensor_press1set:
-                   serverIntent.putExtra("name","第一路压力");
+                   serverIntent.putExtra("name",getString(R.string.ANALOG_INPUT1));
                    serverIntent.putExtra("position",1);
                    serverIntent.putExtra("item1",mpressmode1.getText().toString());
                    serverIntent.putExtra("item2",mPress1H.getText().toString());
@@ -381,7 +387,7 @@ public class SensorInputFregment extends BaseFragment {
 //                   Log.d("zl","R.id.sensor_press1set:");
                    break;
                case R.id.sensor_press2set:
-                   serverIntent.putExtra("name","第二路压力");
+                   serverIntent.putExtra("name",getString(R.string.ANALOG_INPUT2));
                    serverIntent.putExtra("position",2);
                    serverIntent.putExtra("item1",mpressmode2.getText().toString());
                    serverIntent.putExtra("item2",mPress2H.getText().toString());
@@ -399,7 +405,7 @@ public class SensorInputFregment extends BaseFragment {
 //                   Log.d("zl","R.id.sensor_temperatureset:");
                    break;
                case R.id.sensor_timeset:
-                   serverIntent.putExtra("name","时间");
+                   serverIntent.putExtra("name","");
                    serverIntent.putExtra("position",4);
                    serverIntent.putExtra("item1","");
                    serverIntent.putExtra("item2",mtime1.getText().toString());
@@ -428,9 +434,9 @@ public class SensorInputFregment extends BaseFragment {
             {
                 Dialog dialog = new AlertDialog.Builder(MainActivity.getInstance()) // 实例化对象
                         .setIcon(R.drawable.i_ve_got_it) 						// 设置显示图片
-                        .setTitle("操作提示") 							// 设置显示标题
-                        .setMessage("单击条目可以进行设置") 				// 设置显示内容
-                        .setPositiveButton("确定", 						// 增加一个确定按钮
+                        .setTitle(getString(R.string.DIALOG_INFORMATION)) 							// 设置显示标题
+                        .setMessage(getString(R.string.DIALOG_BUTTON_TEXT)) 				// 设置显示内容
+                        .setPositiveButton(getString(R.string.DIALOG_BUTTON_TEXT), 						// 增加一个确定按钮
                                 new DialogInterface.OnClickListener() {	// 设置操作监听
                                     public void onClick(DialogInterface dialog,
                                                         int whichButton) { 			// 单击事件
