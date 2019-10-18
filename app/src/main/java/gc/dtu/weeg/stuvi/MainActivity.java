@@ -48,6 +48,7 @@ import gc.dtu.weeg.stuvi.fregment.PressSensoraddSetframent;
 import gc.dtu.weeg.stuvi.fregment.RealtimedataFregment;
 import gc.dtu.weeg.stuvi.fregment.STUVISettingFragment;
 import gc.dtu.weeg.stuvi.fregment.SensorInputFregment;
+import gc.dtu.weeg.stuvi.fregment.StuViSSVSettingFragment;
 import gc.dtu.weeg.stuvi.myview.CustomDialog;
 import gc.dtu.weeg.stuvi.utils.Constants;
 import gc.dtu.weeg.stuvi.utils.DigitalTrans;
@@ -115,7 +116,8 @@ public class MainActivity extends FragmentActivity {
     //各个子页面
 //    public BasicinfoFregment fregment1;
     public STUVISettingFragment fregment1;
-    public RealtimedataFregment fregment2;
+//    public RealtimedataFregment fregment2;
+    public StuViSSVSettingFragment fregment2;
     public FrozendataFregment   fregment3;
     public LocalsettngsFregment fregment4;
     public SensorInputFregment  fregment5;
@@ -336,7 +338,7 @@ public class MainActivity extends FragmentActivity {
         fregment1.setArguments(bundle0);
         fragments.add(fregment1);
 
-        fregment2 =new RealtimedataFregment();
+        fregment2 =new StuViSSVSettingFragment();
         Bundle bundle1 = new Bundle();
         bundle1.putInt("position",index);
         bundle1.putString("extra",titles[index++]);

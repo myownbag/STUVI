@@ -261,7 +261,7 @@ MainActivity mainActivity = MainActivity.getInstance();
                 .setType(new boolean[]{false,false,false,true,true,false})
                 .setLabel(null,null,null,"时","分",null)
                 .build();
-        Log.d("zl",""+mRegs[0]);
+//        Log.d("zl",""+mRegs[0]);
         if(mRegs[0] == 208)
         {
             Tiltetx.setText(R.string.device_report_type);

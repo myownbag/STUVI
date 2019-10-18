@@ -64,6 +64,11 @@
     <string name="Please_select">请选择</string>
     <string name="Time_set_result">时间设置</string>
 
+    <!--  SSV Setting Fragment information  -->
+    <string name="SSV_LINE1">线路 #1</string>
+    <string name="SSV_LINE2">线路 #2</string>
+    <string name="SSV_STATUS_ON">打开</string>
+    <string name="SSV_STATUS_OFF">关闭</string>
     <string-array name="hour_display">
         <item>0</item>
         <item>1</item>
