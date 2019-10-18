@@ -536,37 +536,37 @@ public class FrozendataFregment extends BaseFragment implements View.OnClickList
         Log.d("zl", "dofrozendataread: "+CodeFormat.byteToHex(sendbufread,sendbufread.length));
     }
 
-    private void verycutstatus(String readOutMsg) {
-        MainActivity parentActivity1 = (MainActivity) getActivity();
-        String strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase("无连接"))
-        {
-            parentActivity1.mDialog.show();
-            parentActivity1.mDialog.setDlgMsg("读取中...");
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF");
-        }
-        else
-        {
-            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
-        }
-    }
-    private void verycutstatus(String readOutMsg,int timeout) {
-        MainActivity parentActivity1 = MainActivity.getInstance();
-        String strState1="无连接";
-        strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase("无连接"))
-        {
+//    private void verycutstatus(String readOutMsg) {
+//        MainActivity parentActivity1 = (MainActivity) getActivity();
+//        String strState1 = parentActivity1.GetStateConnect();
+//        if(!strState1.equalsIgnoreCase("无连接"))
+//        {
 //            parentActivity1.mDialog.show();
 //            parentActivity1.mDialog.setDlgMsg("读取中...");
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF",0);
-        }
-        else
-        {
-            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
-        }
-    }
+//            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
+//            parentActivity1.sendData(readOutMsg, "FFFF");
+//        }
+//        else
+//        {
+//            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
+//        }
+//    }
+//    private void verycutstatus(String readOutMsg,int timeout) {
+//        MainActivity parentActivity1 = MainActivity.getInstance();
+//        String strState1="无连接";
+//        strState1 = parentActivity1.GetStateConnect();
+//        if(!strState1.equalsIgnoreCase("无连接"))
+//        {
+////            parentActivity1.mDialog.show();
+////            parentActivity1.mDialog.setDlgMsg("读取中...");
+//            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
+//            parentActivity1.sendData(readOutMsg, "FFFF",0);
+//        }
+//        else
+//        {
+//            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
+//        }
+//    }
     private class listviewadpater extends BaseAdapter
     {
 

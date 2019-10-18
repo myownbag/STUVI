@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ins_fragment_buad_select_lable"
         android:layout_centerVertical="true"
-        android:text="波特率："/>
+        android:text="@string/EVC_BAUD_RATE"/>
     <Spinner
         android:id="@+id/ins_fragment_buad_select"
         android:layout_centerVertical="true"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/ins_fragment_parity_select_lable"
             android:layout_centerVertical="true"
-            android:text="校验位："/>
+            android:text="@string/EVC_BAUD_CHECK_BIT"/>
         <Spinner
             android:id="@+id/ins_fragment_parity_select"
             android:layout_centerVertical="true"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/ins_fragment_databit_select_lable"
             android:layout_centerVertical="true"
-            android:text="数据位："/>
+            android:text="@string/EVC_BAUD_DATA_BIT"/>
         <Spinner
             android:id="@+id/ins_fragment_databit_select"
             android:layout_centerVertical="true"
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/ins_fragment_stopbit_select_lable"
             android:layout_centerVertical="true"
-            android:text="停止位："/>
+            android:text="@string/EVC_BAUD_STOP_BIT"/>
         <Spinner
             android:id="@+id/ins_fragment_stopbit_select"
             android:layout_centerVertical="true"

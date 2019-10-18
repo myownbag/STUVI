@@ -124,34 +124,5 @@ public class StuViSSVSettingFragment extends BaseFragment implements View.OnClic
         verycutstatus(readOutMsg);
     }
 
-    private void verycutstatus(String readOutMsg) {
-        MainActivity parentActivity1 = (MainActivity) getActivity();
-        String strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase(getString(R.string.title_not_connected)))
-        {
-            parentActivity1.mDialog.show();
-            parentActivity1.mDialog.setDlgMsg(getString(R.string.reading));
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF");
-        }
-        else
-        {
-            ToastUtils.showToast(getActivity(), getString(R.string.not_connected));
-        }
-    }
-    private void verycutstatus(String readOutMsg,int timeout) {
-        MainActivity parentActivity1 = (MainActivity) getActivity();
-        String strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase(getString(R.string.title_not_connected)))
-        {
-            parentActivity1.mDialog.show();
-            parentActivity1.mDialog.setDlgMsg(getString(R.string.reading));
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF",timeout);
-        }
-        else
-        {
-            ToastUtils.showToast(getActivity(),  getString(R.string.not_connected));
-        }
-    }
+
 }

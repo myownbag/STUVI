@@ -57,6 +57,7 @@
     <string name="device_station_port">Port</string>
 
     <string name="device_button_action">读 取</string>
+    <string name="device_button_action_write">写入数据</string>
 
 <!-- set-i item setting -->
     <string name="Please_select">请选择</string>
@@ -66,6 +67,23 @@
     <string name="SSV_LINE2">线路 #2</string>
     <string name="SSV_STATUS_ON">打开</string>
     <string name="SSV_STATUS_OFF">关闭</string>
+
+    <!--    EVC 相关信息设置-->
+    <string name="EVC_COM_SETTING">通信参数设置</string>
+    <string name="EVC_Acquisition_SETTING">数据扫描时间:</string>
+    <string name="EVC_Acquisition_SETTING_STEP">分钟</string>
+    <string name="EVC_INSTRUMENT_TYPE">仪表类型</string>
+    <string name="EVC_INSTRUMENT_ADDRESS">仪表地址</string>
+    <string name="EVC_BAUD_RATE">波特率</string>
+    <string name="EVC_BAUD_CHECK_BIT">校验位</string>
+    <string name="EVC_BAUD_DATA_BIT">数据位</string>
+    <string name="EVC_BAUD_STOP_BIT">停止位</string>
+    <string name="EVC_CHECK_BIT_EVEN">偶</string>
+    <string name="EVC_CHECK_BIT_ODD">奇</string>
+    <string name="EVC_CHECK_BIT_NONE">无</string>
+    <string name="EVC_COM_FRAG_PLEASE_SELECT">请选择</string>
+    <string name="EVC_ADDR_SET_ERROR">仪表地址不能大于256</string>
+
 
     <string-array name="hour_display">
         <item>0</item>

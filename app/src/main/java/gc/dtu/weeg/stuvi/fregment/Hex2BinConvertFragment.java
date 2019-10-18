@@ -1003,37 +1003,37 @@ public class Hex2BinConvertFragment extends BaseFragment implements  EasyPermiss
         }
     }
 
-    private void verycutstatus(String readOutMsg,int timeout) {
-        MainActivity parentActivity1 = MainActivity.getInstance();
-        String strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase("无连接"))
-        {
-            parentActivity1.mDialog.show();
-            parentActivity1.mDialog.setDlgMsg("读取中...");
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF",timeout);
-        }
-        else
-        {
-            ToastUtils.showToast(parentActivity1, "请先建立蓝牙连接!");
-        }
-    }
+//    private void verycutstatus(String readOutMsg,int timeout) {
+//        MainActivity parentActivity1 = MainActivity.getInstance();
+//        String strState1 = parentActivity1.GetStateConnect();
+//        if(!strState1.equalsIgnoreCase("无连接"))
+//        {
+//            parentActivity1.mDialog.show();
+//            parentActivity1.mDialog.setDlgMsg("读取中...");
+//            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
+//            parentActivity1.sendData(readOutMsg, "FFFF",timeout);
+//        }
+//        else
+//        {
+//            ToastUtils.showToast(parentActivity1, "请先建立蓝牙连接!");
+//        }
+//    }
 
-    private void verycutstatus(String readOutMsg) {
-        MainActivity parentActivity1 = MainActivity.getInstance();
-        String strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase("无连接"))
-        {
-            parentActivity1.mDialog.show();
-            parentActivity1.mDialog.setDlgMsg("读取中...");
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF");
-        }
-        else
-        {
-            ToastUtils.showToast(parentActivity1, "请先建立蓝牙连接!");
-        }
-    }
+//    private void verycutstatus(String readOutMsg) {
+//        MainActivity parentActivity1 = MainActivity.getInstance();
+//        String strState1 = parentActivity1.GetStateConnect();
+//        if(!strState1.equalsIgnoreCase("无连接"))
+//        {
+//            parentActivity1.mDialog.show();
+//            parentActivity1.mDialog.setDlgMsg("读取中...");
+//            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
+//            parentActivity1.sendData(readOutMsg, "FFFF");
+//        }
+//        else
+//        {
+//            ToastUtils.showToast(parentActivity1, "请先建立蓝牙连接!");
+//        }
+//    }
     private void verycutstatus(byte [] buf,int timeout)
     {
         MainActivity parentActivity1 = MainActivity.getInstance();

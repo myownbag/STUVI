@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gc.dtu.weeg.stuvi.R;
+import gc.dtu.weeg.stuvi.utils.ToastUtils;
 
 public class instrumenttimegapFragment extends instrumentbaseFragment {
     View mView;
@@ -58,7 +59,7 @@ public class instrumenttimegapFragment extends instrumentbaseFragment {
             int temp=Integer.valueOf(set).intValue();
             if(temp>5000)
             {
-                Toast.makeText(mActivity,"仪表数据记录频率不正确",Toast.LENGTH_SHORT).show();
+                ToastUtils.showToast(mActivity,getString(R.string.EVC_Acquisition_SETTING)+getString(R.string.wrong));
                 return  null;
             }
             ByteBuffer buf;

@@ -118,7 +118,7 @@ public class MainActivity extends FragmentActivity {
     public STUVISettingFragment fregment1;
 //    public RealtimedataFregment fregment2;
     public StuViSSVSettingFragment fregment2;
-    public FrozendataFregment   fregment3;
+    public InstrumentInputFregment   fregment3;   //FrozendataFregment
     public LocalsettngsFregment fregment4;
     public SensorInputFregment  fregment5;
     public InstrumentInputFregment fregment6;
@@ -293,19 +293,19 @@ public class MainActivity extends FragmentActivity {
                     Toast.makeText(MainActivity.this, "蓝牙无回应请重连", Toast.LENGTH_SHORT).show();
                     break;
                 case BluetoothState.MESSAGE_BLOCK_TIMEOUT:
-                    if(mCurrentpage==fregment3) {
-//                        Log.d("zl","BluetoothState.MESSAGE_BLOCK_TIMEOUT:"+msg.arg1);
-                        if(msg.arg1==Constants.NB_FRESONDATA_KEY_BLOCK_FINISHED)
-                        {
-//                            Log.d("zl","Main OnBlockdataFinished");
-                            fregment3.OnBlockdataFinished();
-                        }
-                        else if(msg.arg1==Constants.NB_FRESONDATA_KEY_TASKFINISHED_FINISHED)
-                        {
-//                            Log.d("zl","Main updatelistview");
-                            fregment3.updatelistview();
-                        }
-                    }
+//                    if(mCurrentpage==fregment3) {
+////                        Log.d("zl","BluetoothState.MESSAGE_BLOCK_TIMEOUT:"+msg.arg1);
+//                        if(msg.arg1==Constants.NB_FRESONDATA_KEY_BLOCK_FINISHED)
+//                        {
+////                            Log.d("zl","Main OnBlockdataFinished");
+//                            fregment3.OnBlockdataFinished();
+//                        }
+//                        else if(msg.arg1==Constants.NB_FRESONDATA_KEY_TASKFINISHED_FINISHED)
+//                        {
+////                            Log.d("zl","Main updatelistview");
+//                            fregment3.updatelistview();
+//                        }
+//                    }
                     break;
                 case BluetoothState.MESSAGE_CONVERT_INFO:
                     if(mCurrentpage==fragment10)
@@ -345,7 +345,7 @@ public class MainActivity extends FragmentActivity {
         fregment2.setArguments(bundle1);
         fragments.add(fregment2);
 
-        fregment3 = new FrozendataFregment();
+        fregment3 = new InstrumentInputFregment();  //FrozendataFregment
         Bundle bundle2 = new Bundle();
         bundle2.putInt("position",index);
         bundle2.putString("extra",titles[index++]);

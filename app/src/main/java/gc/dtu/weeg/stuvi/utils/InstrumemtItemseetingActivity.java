@@ -20,6 +20,7 @@ import java.util.Map;
 
 import gc.dtu.weeg.stuvi.MainActivity;
 import gc.dtu.weeg.stuvi.R;
+import gc.dtu.weeg.stuvi.fregment.InstrumentInputFregment;
 import gc.dtu.weeg.stuvi.fregment.instrumentComSetFragment;
 import gc.dtu.weeg.stuvi.fregment.instrumentWorkModeSetFragment;
 import gc.dtu.weeg.stuvi.fregment.instrumentbaseFragment;
@@ -40,74 +41,7 @@ public class InstrumemtItemseetingActivity extends FragmentActivity implements V
     private static Activity activity;
     public ArrayList<Map<String,String>> settings;
     public CustomDialog mDialog;
-    public static String baseinfo[][]={
-            {"1998","1","1","300"}, // reg,item,seletc,value
-            {"1998","1","2","600"},
-            {"1998","1","4","1200"},
-            {"1998","1","8","2400"},
-            {"1998","1","16","4800"},
-            {"1998","1","32","9600"},
-            {"1998","1","64","19200"},
-
-            {"1998","2","0","无"},
-            {"1998","2","1","偶"},
-            {"1998","2","2","奇"},
-
-            {"1998","3","0","5"},
-            {"1998","3","4","6"},
-            {"1998","3","8","7"},
-            {"1998","3","12","8"},
-
-            {"1998","4","16","0.5"},
-            {"1998","4","0","1"},
-            {"1998","4","48","1.5"},
-            {"1998","4","32","2"},
-
-            {"2000","1","关闭","0"},
-            {"2000","1","打开","1"},
-
-
-            {"2000","2","Empty","0"},
-            {"2000","2","ActarisMeter","1"},
-            {"2000","2","HytroMeter","2"},
-            {"2000","2","SiemensMeter","3"},
-            {"2000","2","Kamstrup","4"},
-            {"2000","2","LUG_2wr6","5"},
-            {"2000","2","WEEG_Gas","6"},
-            {"2000","2","FC6000H","7"},
-            {"2000","2","WEEG_Gas_ISM","8"},
-
-            {"2000","2","MFGD_Modbus","1000"},
-            {"2000","2","Trancy 1.2","1001"},
-            {"2000","2","Trancy 1.3","1002"},
-            {"2000","2","Trancy_Modbus","1003"},
-            {"2000","2","C.N.","1004"},
-            {"2000","2","C.N._Modbus","1005"},
-            {"2000","2","PTZ_BOX with Kp","1006"},
-            {"2000","2","PTZ_BOX without Kp","1007"},
-            {"2000","2","PTZ_BOX V3","1008"},
-            {"2000","2","PTZ_BOX V3-2","1009"},
-            {"2000","2","Corus","1010"},
-            {"2000","2","Corus 2003","1011"},
-            {"2000","2","Corus_Modbus","1012"},
-            {"2000","2","SEVC-D 3.0","1013"},
-            {"2000","2","Elster","1014"},
-            {"2000","2","Elster_Modbus","1015"},
-            {"2000","2","MFFD_Modbus","1016"},
-            {"2000","2","EVC300","1017"},
-            {"2000","2","AS Ultrasonic","1018"},
-            {"2000","2","PTZ_BOX CV","1019"},
-            {"2000","2","AS Ultrasonic_80","1020"},
-            {"2000","2","Trancy cpuCard","1021"},
-            {"2000","2","Tancy_Modbus_A4","1022"},
-            {"2000","2","SMARC-Modbus","1023"},
-            {"2000","2","FLOWSIC500","1024"},
-            {"2000","2","FLOWSIC500_V2","1025"},
-            {"2000","2","Tancy_Modbus_TFC","1026"},
-
-            {"2000","2","Control Valve","10500"},
-            {"2000","2","电压读取","10501"},
-    };
+//    public static String baseinfo[][]; ///123
 
     int reg;
     Intent intent;
@@ -121,10 +55,13 @@ public class InstrumemtItemseetingActivity extends FragmentActivity implements V
         mButwrite=findViewById(R.id.ins_fragment_but);
         intent=getIntent();
         mainActivity=MainActivity.getInstance();
+      //  InitResourceInfo();
         initview();
         initdata();
 
     }
+
+
 
     private void initview() {
         mDialog = CustomDialog.createProgressDialog(this, Constants.TimeOutSecond, new CustomDialog.OnTimeOutListener() {

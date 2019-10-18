@@ -96,8 +96,8 @@ public class instrumentComSetFragment extends instrumentbaseFragment {
 
     private void initdata() {
        Map<String,String> tmap=new HashMap<String,String>();
-        tmap.put("items","请选择");
-        tmap.put("value","请选择");
+        tmap.put("items",getString(R.string.EVC_COM_FRAG_PLEASE_SELECT));
+        tmap.put("value",getString(R.string.EVC_COM_FRAG_PLEASE_SELECT));
         mBuadlist=new ArrayList<>();
         mParitylist=new ArrayList<>();
         mDatabitlist=new ArrayList<>();
@@ -106,40 +106,40 @@ public class instrumentComSetFragment extends instrumentbaseFragment {
         mParitylist .add(tmap);
         mDatabitlist.add(tmap);
         mStopbitlist.add(tmap);
-        for(int i=0;i<mActivity.baseinfo.length;i++)
+        for(int i=0;i<InstrumentInputFregment.baseinfo.length;i++)
         {
-            if(mActivity.baseinfo[i][0].equals("1998")==false)
+            if(InstrumentInputFregment.baseinfo[i][0].equals("1998")==false)
             {
                 continue;
             }
             else
             {
-                if(mActivity.baseinfo[i][1].equals("1"))
+                if(InstrumentInputFregment.baseinfo[i][1].equals("1"))
                 {
                     Map<String,String> temp=new HashMap<>();
-                    temp.put("items",mActivity.baseinfo[i][3]);
-                    temp.put("value",mActivity.baseinfo[i][2]);
+                    temp.put("items",InstrumentInputFregment.baseinfo[i][3]);
+                    temp.put("value",InstrumentInputFregment.baseinfo[i][2]);
                     mBuadlist.add(temp);
                 }
-                else if(mActivity.baseinfo[i][1].equals("2"))
+                else if(InstrumentInputFregment.baseinfo[i][1].equals("2"))
                 {
                     Map<String,String> temp=new HashMap<>();
-                    temp.put("items",mActivity.baseinfo[i][3]);
-                    temp.put("value",mActivity.baseinfo[i][2]);
+                    temp.put("items",InstrumentInputFregment.baseinfo[i][3]);
+                    temp.put("value",InstrumentInputFregment.baseinfo[i][2]);
                     mParitylist.add(temp);
                 }
-                else if(mActivity.baseinfo[i][1].equals("3"))
+                else if(InstrumentInputFregment.baseinfo[i][1].equals("3"))
                 {
                     Map<String,String> temp=new HashMap<>();
-                    temp.put("items",mActivity.baseinfo[i][3]);
-                    temp.put("value",mActivity.baseinfo[i][2]);
+                    temp.put("items",InstrumentInputFregment.baseinfo[i][3]);
+                    temp.put("value",InstrumentInputFregment.baseinfo[i][2]);
                     mDatabitlist.add(temp);
                 }
-                else if(mActivity.baseinfo[i][1].equals("4"))
+                else if(InstrumentInputFregment.baseinfo[i][1].equals("4"))
                 {
                     Map<String,String> temp=new HashMap<>();
-                    temp.put("items",mActivity.baseinfo[i][3]);
-                    temp.put("value",mActivity.baseinfo[i][2]);
+                    temp.put("items",InstrumentInputFregment.baseinfo[i][3]);
+                    temp.put("value",InstrumentInputFregment.baseinfo[i][2]);
                     mStopbitlist.add(temp);
                 }
             }

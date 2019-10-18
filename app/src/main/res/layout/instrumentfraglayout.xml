@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:text="寄存器 1998"
+                android:text="@string/EVC_COM_SETTING"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="波特率:"/>
+                        android:text="@string/EVC_BAUD_RATE"/>
                     <TextView
                         android:id="@+id/tv_ins_baud_value"
                         android:layout_width="wrap_content"
@@ -67,7 +67,7 @@
                         android:id="@+id/tv_ins_paritybit_lable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="校验位:" />
+                        android:text="@string/EVC_BAUD_CHECK_BIT" />
                     <TextView
                         android:id="@+id/tv_ins_paritybit_value"
                         android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
                         android:id="@+id/tv_ins_databit_lable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="数据位:" />
+                        android:text="@string/EVC_BAUD_DATA_BIT" />
                     <TextView
                         android:id="@+id/tv_ins_databit_value"
                         android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
                         android:id="@+id/tv_ins_stopbit_lable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="停止位:" />
+                        android:text="@string/EVC_BAUD_STOP_BIT" />
                     <TextView
                         android:id="@+id/tv_ins_stopbit_value"
                         android:layout_width="wrap_content"
@@ -123,6 +123,7 @@
         android:layout_height="wrap_content"
         >
         <RelativeLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_ins_1999_lable">
@@ -148,7 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="仪表数据记录频率:  "/>
+                android:text="@string/EVC_Acquisition_SETTING"/>
             <TextView
                 android:id="@+id/tv_ins_recodegap_value"
                 android:layout_width="wrap_content"
@@ -160,7 +161,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/tv_ins_recodegap_value"
-                android:text="  分钟"/>
+                android:text="@string/EVC_Acquisition_SETTING_STEP"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/icon_jiantou"
+                />
         </RelativeLayout>
     </RelativeLayout>
     <View
@@ -171,13 +178,15 @@
     <RelativeLayout
         android:id="@+id/but_layout_2000"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="wrap_content"
         android:focusableInTouchMode="true"
         >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/tv_ins_2000_lable">
+            android:id="@+id/tv_ins_2000_lable"
+            android:visibility="gone"
+            >
 
             <TextView
                 android:id="@+id/ins_select_title"
@@ -205,10 +214,18 @@
         <ListView
             android:id="@+id/tv_ins_2000_list"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tv_ins_2000_lable"
             android:listSelector="@android:color/transparent"
-            android:divider="@null"></ListView>
+            android:divider="@null"
+            ></ListView>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_jiantou"
+            />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -231,7 +248,7 @@
             android:layout_marginStart="20dp"
             android:textSize="16sp"
             android:background="@drawable/round_button"
-            android:text="读取数据"
+            android:text="@string/device_button_action"
             android:textColor="#fff" />
     </LinearLayout>
 </LinearLayout>

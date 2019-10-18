@@ -58,6 +58,7 @@
     <string name="device_station_port">Port</string>
 
     <string name="device_button_action">Read</string>
+    <string name="device_button_action_write">Write</string>
     <!-- set-i item setting -->
     <string name="Please_select">Please select</string>
     <string name="Time_set_result">Time is set</string>
@@ -67,6 +68,22 @@
     <string name="SSV_LINE2">Line #2</string>
     <string name="SSV_STATUS_ON">OPEN</string>
     <string name="SSV_STATUS_OFF">OFF</string>
+
+    <!--    EVC 相关信息设置-->
+    <string name="EVC_COM_SETTING">Communication Setting</string>
+    <string name="EVC_Acquisition_SETTING">Acquisition Setting:</string>
+    <string name="EVC_Acquisition_SETTING_STEP">Minute</string>
+    <string name="EVC_INSTRUMENT_TYPE">Protocol Setting</string>
+    <string name="EVC_INSTRUMENT_ADDRESS">EVC Device Address</string>
+    <string name="EVC_BAUD_RATE">Baud Rate</string>
+    <string name="EVC_BAUD_CHECK_BIT">Check Bit</string>
+    <string name="EVC_BAUD_DATA_BIT">Data Bit</string>
+    <string name="EVC_BAUD_STOP_BIT">Stop Bit</string>
+    <string name="EVC_CHECK_BIT_EVEN">Even</string>
+    <string name="EVC_CHECK_BIT_ODD">ODD</string>
+    <string name="EVC_CHECK_BIT_NONE">None</string>
+    <string name="EVC_COM_FRAG_PLEASE_SELECT">Please Select</string>
+    <string name="EVC_ADDR_SET_ERROR">EVC Address can not be larger than 256</string>
 
     <string-array name="hour_display">
         <item>0</item>

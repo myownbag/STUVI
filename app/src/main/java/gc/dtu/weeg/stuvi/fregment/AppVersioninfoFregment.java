@@ -76,17 +76,17 @@ public class AppVersioninfoFregment extends BaseFragment implements View.OnClick
         dialog.show();
     }
 
-    private void verycutstatus(String readOutMsg,int timeout) {
-        MainActivity parentActivity1 = MainActivity.getInstance();
-        String strState1="无连接";
-        strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase("无连接"))
-        {
-            parentActivity1.sendData(readOutMsg, "FFFF",timeout);
-        }
-        else
-        {
-            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
-        }
-    }
+//    private void verycutstatus(String readOutMsg,int timeout) {
+//        MainActivity parentActivity1 = MainActivity.getInstance();
+//        String strState1="无连接";
+//        strState1 = parentActivity1.GetStateConnect();
+//        if(!strState1.equalsIgnoreCase("无连接"))
+//        {
+//            parentActivity1.sendData(readOutMsg, "FFFF",timeout);
+//        }
+//        else
+//        {
+//            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
+//        }
+//    }
 }

@@ -22,12 +22,12 @@ import gc.dtu.weeg.stuvi.utils.CodeFormat;
 
 public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
     View mView;
-    Spinner mdevicestatus;
+//    Spinner mdevicestatus;
     Spinner mdevicetype;
     EditText maddrET;
-    EditText mPowsuptime;
-    EditText mElsteraddr;
-    ArrayList<Map<String,String>> mdevicestatuslist;
+//    EditText mPowsuptime;
+//    EditText mElsteraddr;
+//    ArrayList<Map<String,String>> mdevicestatuslist;
     ArrayList<Map<String,String>> mdevicetypelist;
 
     String[] mSettings;
@@ -47,17 +47,17 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
 
     private void initview() {
         initdata();
-        mdevicestatus=mView.findViewById(R.id.instrument_device_status_value);
+//        mdevicestatus=mView.findViewById(R.id.instrument_device_status_value);
         mdevicetype=mView.findViewById(R.id.instrument_device_type_value);
 
         maddrET=mView.findViewById(R.id.instrument_device_addr_value);
-        mPowsuptime=mView.findViewById(R.id.instrument_device_pow_suply_value);
-        mElsteraddr=mView.findViewById(R.id.instrument_device_elster_value);
+//        mPowsuptime=mView.findViewById(R.id.instrument_device_pow_suply_value);
+//        mElsteraddr=mView.findViewById(R.id.instrument_device_elster_value);
 
-        setSpinneradpater(mdevicestatus,mdevicestatuslist);
+//        setSpinneradpater(mdevicestatus,mdevicestatuslist);
         setSpinneradpater(mdevicetype,mdevicetypelist);
 
-        mdevicestatus.setOnItemSelectedListener(new onSpinnerSelectimp());
+//        mdevicestatus.setOnItemSelectedListener(new onSpinnerSelectimp());
         mdevicetype.setOnItemSelectedListener(new onSpinnerSelectimp());
 
         initsettiing();
@@ -66,19 +66,19 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
     }
 
     private void initsettiing() {
-        for(int i=0;i<mdevicestatuslist.size();i++)
-        {
-            if(mSettings[0].equals(mdevicestatuslist.get(i).get("items")))
-            {
-                mdevicestatus.setSelection(i,true);
-                mCurrentposition[0]=i;
-                break;
-            }
-
-        }
+//        for(int i=0;i<mdevicestatuslist.size();i++)
+//        {
+//            if(mSettings[0].equals(mdevicestatuslist.get(i).get("items")))
+//            {
+//                mdevicestatus.setSelection(i,true);
+//                mCurrentposition[0]=i;
+//                break;
+//            }
+//
+//        }
         for(int i=0;i<mdevicetypelist.size();i++)
         {
-            if(mSettings[1].equals(mdevicetypelist.get(i).get("items")))
+            if(mSettings[0].equals(mdevicetypelist.get(i).get("items")))
             {
                 mdevicetype.setSelection(i,true);
                 mCurrentposition[1]=i;
@@ -86,41 +86,41 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
             }
 
         }
-        maddrET.setText(mSettings[2]);
-        mPowsuptime.setText(mSettings[3]);
-        mElsteraddr.setText(mSettings[4]);
+        maddrET.setText(mSettings[1]);
+//        mPowsuptime.setText(mSettings[3]);
+//        mElsteraddr.setText(mSettings[4]);
     }
 
     private void initdata() {
         Map<String,String> tmap=new HashMap<String,String>();
-        tmap.put("items","请选择");
-        tmap.put("value","请选择");
-        mdevicestatuslist=new ArrayList<>();
+        tmap.put("items",getString(R.string.Please_select));
+        tmap.put("value",getString(R.string.Please_select));
+//        mdevicestatuslist=new ArrayList<>();
         mdevicetypelist=new ArrayList<>();
 
-        mdevicestatuslist.add(tmap);
+//        mdevicestatuslist.add(tmap);
         mdevicetypelist .add(tmap);
 
-        for(int i=0;i<mActivity.baseinfo.length;i++)
+        for(int i=0;i<InstrumentInputFregment.baseinfo.length;i++)
         {
-            if(mActivity.baseinfo[i][0].equals("2000")==false)
+            if(InstrumentInputFregment.baseinfo[i][0].equals("2000")==false)
             {
                 continue;
             }
             else
             {
-                if(mActivity.baseinfo[i][1].equals("1"))
+//                if(InstrumentInputFregment.baseinfo[i][1].equals("1"))
+//                {
+//                    Map<String,String> temp=new HashMap<>();
+//                    temp.put("items",InstrumentInputFregment.baseinfo[i][2]);
+//                    temp.put("value",InstrumentInputFregment.baseinfo[i][3]);
+//                    mdevicestatuslist.add(temp);
+//                }
+                 if(InstrumentInputFregment.baseinfo[i][1].equals("2"))
                 {
                     Map<String,String> temp=new HashMap<>();
-                    temp.put("items",mActivity.baseinfo[i][2]);
-                    temp.put("value",mActivity.baseinfo[i][3]);
-                    mdevicestatuslist.add(temp);
-                }
-                else if(mActivity.baseinfo[i][1].equals("2"))
-                {
-                    Map<String,String> temp=new HashMap<>();
-                    temp.put("items",mActivity.baseinfo[i][2]);
-                    temp.put("value",mActivity.baseinfo[i][3]);
+                    temp.put("items",InstrumentInputFregment.baseinfo[i][2]);
+                    temp.put("value",InstrumentInputFregment.baseinfo[i][3]);
                     mdevicetypelist.add(temp);
                 }
             }
@@ -148,26 +148,33 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
         ArrayList<Map<String,String>> list = new ArrayList<>();
 //        mdevicestatuslist;
 //        mdevicetypelist;
-        for(int i=0;i<2;i++)
+        if(mCurrentposition[1]==0)
         {
-            if(mCurrentposition[i]==0)
-            {
-                return  null;
-            }
+            return  null;
         }
-        if(maddrET.getText().length()==0||mPowsuptime.getText().length()==0)
+//        for(int i=0;i<2;i++)
+//        {
+//            if(mCurrentposition[i]==0)
+//            {
+//                return  null;
+//            }
+//        }
+        if(maddrET.getText().length()==0/*||mPowsuptime.getText().length()==0*/)
         {
             return null;
         }
         //仪表状态
-        list.add(mdevicestatuslist.get(mCurrentposition[0]));
-        int temp= Integer.valueOf(mdevicestatuslist.get(mCurrentposition[0]).get("value"));
+        int temp;
         ByteBuffer buf;
-        buf=ByteBuffer.allocateDirect(4);
-        buf.order(ByteOrder.LITTLE_ENDIAN);
-        buf.putInt(temp);
-        buf.rewind();
-        buf.get(sendbuf,16,1);
+//        list.add(mdevicestatuslist.get(mCurrentposition[0]));
+//        int temp= Integer.valueOf(mdevicestatuslist.get(mCurrentposition[0]).get("value"));
+//        ByteBuffer buf;
+//        buf=ByteBuffer.allocateDirect(4);
+//        buf.order(ByteOrder.LITTLE_ENDIAN);
+//        buf.putInt(temp);
+//        buf.rewind();
+//        buf.get(sendbuf,16,1);
+//        sendbuf[16]
 
         //仪表类型
         list.add(mdevicetypelist.get(mCurrentposition[1]));
@@ -177,6 +184,15 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
         buf.putInt(temp);
         buf.rewind();
         buf.get(sendbuf,17,2);
+        //类型为None时自动将仪表状态设置为光
+        if(temp==0)
+        {
+            sendbuf[16] = 0x00;
+        }
+        else
+        {
+            sendbuf[16] = 0x01;
+        }
 
         //仪表地址
         String addr=maddrET.getText().toString();
@@ -187,7 +203,7 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
         list.add(map);
         if(temp>256)
         {
-            Toast.makeText(mActivity,"仪表地址不能大于256",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity,getString(R.string.EVC_ADDR_SET_ERROR),Toast.LENGTH_SHORT).show();
             return null;
         }
         buf=ByteBuffer.allocateDirect(4);
@@ -196,43 +212,49 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
         buf.rewind();
         buf.get(sendbuf,19,1);
         //供电时长
-        String powtime=mPowsuptime.getText().toString();
-        temp= Integer.valueOf(powtime);
-        map=new HashMap<>();
-        map.put("items",powtime);
-        map.put("value",powtime);
-        list.add(map);
-        if(temp>5000)
-        {
-            Toast.makeText(mActivity,"供电时长不能超过 5000",Toast.LENGTH_SHORT).show();
-            return null;
-        }
+//        String powtime=mPowsuptime.getText().toString();
+//        temp= Integer.valueOf(powtime);
+//        map=new HashMap<>();
+//        map.put("items",powtime);
+//        map.put("value",powtime);
+//        list.add(map);
+//        if(temp>5000)
+//        {
+//            Toast.makeText(mActivity,"供电时长不能超过 5000",Toast.LENGTH_SHORT).show();
+//            return null;
+//        }
         buf=ByteBuffer.allocateDirect(4);
         buf.order(ByteOrder.BIG_ENDIAN);
-        buf.putInt(temp);
+        buf.putInt(150);
         buf.rewind();
         buf.get(sendbuf,24,4);
         //Elster Press 地址
-        String elster=mElsteraddr.getText().toString();
-        if(elster.length()>16)
+        String elster="";
+        int len=elster.length();
+        for(int i=len;i<16;i++)
         {
-            Toast.makeText(mActivity,"Elster Press 地址错误",Toast.LENGTH_SHORT).show();
-            return null;
+            elster="0"+elster;
         }
-        else
-        {
-            int len=elster.length();
-            for(int i=len;i<16;i++)
-            {
-                elster="0"+elster;
-            }
-        }
+//        String elster=mElsteraddr.getText().toString();
+//        if(elster.length()>16)
+//        {
+//            Toast.makeText(mActivity,"Elster Press 地址错误",Toast.LENGTH_SHORT).show();
+//            return null;
+//        }
+//        else
+//        {
+//            int len=elster.length();
+//            for(int i=len;i<16;i++)
+//            {
+//                elster="0"+elster;
+//            }
+//        }
         byte [] elsterbyte=elster.getBytes();
         byte[] hexbyte = CodeFormat.ASCII_To_BCD(elsterbyte,elsterbyte.length);
-        map=new HashMap<>();
-        map.put("items",elster);
-        map.put("value",elster);
-        list.add(map);
+//        map=new HashMap<>();
+//        map.put("items",elster);
+//        map.put("value",elster);
+//        list.add(map);
 
         buf=ByteBuffer.allocateDirect(8);
         buf.order(ByteOrder.LITTLE_ENDIAN);
@@ -258,7 +280,7 @@ public class instrumentWorkModeSetFragment extends instrumentbaseFragment {
             switch(idhere)
             {
                 case R.id.instrument_device_status_value:
-                    mCurrentposition[0]=position;
+//                    mCurrentposition[0]=position;
                     break;
                 case R.id.instrument_device_type_value:
                     mCurrentposition[1]=position;

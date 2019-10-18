@@ -55,12 +55,13 @@ public class InstrumentInputFregment extends BaseFragment {
     private int mcurSelect=0;
     private int mpreselect=0;
     private byte [][] bufofreadcmd=new byte[3][18];
-    String[] listitem={"仪表状态:","仪表类型:","仪表地址:","供电时长(步长:10ms):","Elster press 地址:"};
+    String[] listitem;//={"仪表状态:","仪表类型:","仪表地址:","供电时长(步长:10ms):","Elster press 地址:"};
 
     String[] mcannel={"2000","2001"};
     ArrayList<Map<String,String>> reg2000list;
     private int sendcmeindex=0;
-
+//基础信息
+public static String baseinfo[][]; ///123
 
 
     @SuppressLint("InflateParams")
@@ -85,6 +86,7 @@ public class InstrumentInputFregment extends BaseFragment {
         mbutread=mView.findViewById(R.id.tv_ins_btn_read);
         mCannelSpiner=mView.findViewById(R.id.ins_select_spiner);
 
+        InitResourceInfo();
         initview();
         initdata();
         return mView;
@@ -95,6 +97,10 @@ public class InstrumentInputFregment extends BaseFragment {
         mReg1999clickrecv.setOnClickListener(new OnMyclicklisternerImp());
        // mReg2000clickrecv.setOnClickListener(new OnMyclicklisternerImp());
         mbutread.setOnClickListener(new Onbutclicklisterner());
+
+        listitem = new String[]{ getString(R.string.EVC_INSTRUMENT_TYPE),
+                                 getString(R.string.EVC_INSTRUMENT_ADDRESS),
+                /*"仪表状态:","仪表类型:","仪表地址:","供电时长(步长:10ms):","Elster press 地址:"*/};
     }
 
     private void initdata() {
@@ -171,7 +177,7 @@ public class InstrumentInputFregment extends BaseFragment {
         }
         if(readOutBuf1.length<5)
         {
-            ToastUtils.showToast(getActivity(), "数据长度短");
+            ToastUtils.showToast(getActivity(), getString(R.string.receive_data_too_short));
 
             return;
         }
@@ -179,12 +185,11 @@ public class InstrumentInputFregment extends BaseFragment {
         {
             if(readOutBuf1[3]!=(readOutBuf1.length-5))
             {
-                ToastUtils.showToast(getActivity(), "数据长度异常");
-
+                ToastUtils.showToast(getActivity(), getString(R.string.receive_data_lenth_error));
                 return;
             }
         }
-           String info[][]=InstrumemtItemseetingActivity.baseinfo;
+           String info[][]=baseinfo;
             switch(sendcmeindex)
             {
                 case 0:
@@ -237,7 +242,7 @@ public class InstrumentInputFregment extends BaseFragment {
                     mRecodeTmTx.setText(""+gap);
                     break;
                 case 2:
-                    int devicestatus=0x000000ff&readOutBuf1[16];
+//                    int devicestatus=0x000000ff&readOutBuf1[16];
                     int devicetype;
                     //ByteBuffer buf1;
                     tempbyte=new byte[4];
@@ -251,42 +256,42 @@ public class InstrumentInputFregment extends BaseFragment {
                     Log.d("zl","devicetype:"+devicetype);
                     for(int i=0;i<info.length;i++)
                     {
-                        if(info[i][0].equals("2000")&&info[i][1].equals("1"))
-                        {
-                            if(Integer.valueOf(info[i][3]).intValue()== devicestatus)
-                            {
-
-                                reg2000list.get(0).put("value",info[i][2]);
-                            }
-                        }
+//                        if(info[i][0].equals("2000")&&info[i][1].equals("1"))
+//                        {
+//                            if(Integer.valueOf(info[i][3]).intValue()== devicestatus)
+//                            {
+//
+//                                reg2000list.get(0).put("value",info[i][2]);
+//                            }
+//                        }
                         if(info[i][0].equals("2000")&&info[i][1].equals("2"))
                         {
 
                             if(Integer.valueOf(info[i][3]).intValue()== devicetype)
                             {
-                                reg2000list.get(1).put("value",info[i][2]);
+                                reg2000list.get(0).put("value",info[i][2]);
                             }
                         }
                     }
                     //仪表地址
                     int addr=0x000000ff&(readOutBuf1[19]);
-                    reg2000list.get(2).put("value",""+addr);
-                    //供电时长
-                    buf1=ByteBuffer.allocateDirect(4);
-                    buf1=buf1.order(ByteOrder.BIG_ENDIAN);
-                    buf1.put(readOutBuf1,24,4);
-                    buf1.rewind();
-                    int timegap=buf1.getInt();
-                    reg2000list.get(3).put("value",""+timegap);
+                    reg2000list.get(1).put("value",""+addr);
+//                    //供电时长
+//                    buf1=ByteBuffer.allocateDirect(4);
+//                    buf1=buf1.order(ByteOrder.BIG_ENDIAN);
+//                    buf1.put(readOutBuf1,24,4);
+//                    buf1.rewind();
+//                    int timegap=buf1.getInt();
+//                    reg2000list.get(3).put("value",""+timegap);
 
-
-                    buf1=ByteBuffer.allocateDirect(8);
-                    buf1=buf1.order(ByteOrder.LITTLE_ENDIAN);
-                    buf1.put(readOutBuf1,28,8);
-                    buf1.rewind();
-                    byte[] by1=new byte[8];
-                    buf1.get(by1);
-                    reg2000list.get(4).put("value",DigitalTrans.byte2hex(by1));
+//"Elster press 地址:"
+//                    buf1=ByteBuffer.allocateDirect(8);
+//                    buf1=buf1.order(ByteOrder.LITTLE_ENDIAN);
+//                    buf1.put(readOutBuf1,28,8);
+//                    buf1.rewind();
+//                    byte[] by1=new byte[8];
+//                    buf1.get(by1);
+//                    reg2000list.get(4).put("value",DigitalTrans.byte2hex(by1));
 
                     list2000adpater.notifyDataSetChanged();
                     break;
@@ -342,7 +347,7 @@ public class InstrumentInputFregment extends BaseFragment {
             switch (id)
             {
                 case R.id.but_layout_1998:
-                    intent.putExtra("title","Reg 1998");
+                    intent.putExtra("title",getString(R.string.EVC_COM_SETTING));
                     intent.putExtra("buad",mBuardTx.getText().toString());
                     intent.putExtra("parity",mParityTx.getText().toString());
                     intent.putExtra("databit",mDataTx.getText().toString());
@@ -387,21 +392,21 @@ public class InstrumentInputFregment extends BaseFragment {
         }
     }
 
-    private void verycutstatus(String readOutMsg) {
-        MainActivity parentActivity1 = (MainActivity) getActivity();
-        String strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase("无连接"))
-        {
-            parentActivity1.mDialog.show();
-            parentActivity1.mDialog.setDlgMsg("读取中...");
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF");
-        }
-        else
-        {
-            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
-        }
-    }
+//    private void verycutstatus(String readOutMsg) {
+//        MainActivity parentActivity1 = (MainActivity) getActivity();
+//        String strState1 = parentActivity1.GetStateConnect();
+//        if(!strState1.equalsIgnoreCase("无连接"))
+//        {
+//            parentActivity1.mDialog.show();
+//            parentActivity1.mDialog.setDlgMsg("读取中...");
+//            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
+//            parentActivity1.sendData(readOutMsg, "FFFF");
+//        }
+//        else
+//        {
+//            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
+//        }
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -490,5 +495,73 @@ public class InstrumentInputFregment extends BaseFragment {
         public void onNothingSelected(AdapterView<?> parent) {
 
         }
+    }
+    private void InitResourceInfo() {
+        baseinfo =new String[][]{
+                {"1998","1","1","300"}, // reg,item,seletc,value
+                {"1998","1","2","600"},
+                {"1998","1","4","1200"},
+                {"1998","1","8","2400"},
+                {"1998","1","16","4800"},
+                {"1998","1","32","9600"},
+                {"1998","1","64","19200"},
+
+                {"1998","2","0",getString(R.string.EVC_CHECK_BIT_NONE)},
+                {"1998","2","1",getString(R.string.EVC_CHECK_BIT_EVEN)},
+                {"1998","2","2",getString(R.string.EVC_CHECK_BIT_ODD)},
+
+                {"1998","3","0","5"},
+                {"1998","3","4","6"},
+                {"1998","3","8","7"},
+                {"1998","3","12","8"},
+
+                {"1998","4","16","0.5"},
+                {"1998","4","0","1"},
+                {"1998","4","48","1.5"},
+                {"1998","4","32","2"},
+
+                {"2000","1",getString(R.string.SSV_STATUS_OFF),"0"},
+                {"2000","1",getString(R.string.SSV_STATUS_ON),"1"},
+
+
+                {"2000","2","None","0"},
+                {"2000","2","MFGD_Modbus","1000"},
+
+
+                {"2000","2","Corus","1010"},
+                {"2000","2","Corus 2003","1011"},
+                {"2000","2","Corus-Modbus","1012"},
+                {"2000","2","SEVC-D 3.0","1013"},
+
+                {"2000","2","AS V1","1020"},
+                {"2000","2","AS V2","1018"},
+
+                {"2000","2","CNM","1004"},
+                {"2000","2","CNM Modbus","1005"},
+                {"2000","2","CNM EVC300","1017"},
+
+                {"2000","2","Elster","1014"},
+                {"2000","2","Elster-Modbus V1","1015"},
+
+                {"2000","2","SMARC-Modbus","1023"},
+
+                {"2000","2","Trancy V1.2","1001"},
+                {"2000","2","Trancy V1.3","1002"},
+                {"2000","2","Tancy Modbus A1","1003"},
+                {"2000","2","Trancy Modbus_A4","1022"},
+                {"2000","2","Trancy cpuCard","1021"},
+//                {"2000","2","PTZ_BOX without Kp","1007"},
+                {"2000","2","PTZ-BOX-V1","1006"},
+                {"2000","2","PTZ-BOX-V3-1","1008"},
+                {"2000","2","PTZ-BOX-V3-2","1009"},
+                {"2000","2","PTZ-BOX-CV","1019"},
+
+                {"2000","2","SICK V1","1024"},
+//                {"2000","2","MFFD_Modbus","1016"},
+//                {"2000","2","FLOWSIC500_V2","1025"},
+//                {"2000","2","Tancy_Modbus_TFC","1026"},
+//                {"2000","2","Control Valve","10500"},
+//                {"2000","2","电压读取","10501"},
+        };
     }
 }

@@ -138,22 +138,22 @@ public class BasicinfoFregment extends BaseFragment {
         });
     }
 
-    private void verycutstatus(String readOutMsg) {
-       // Log.d("zl",readOutMsg);
-        MainActivity parentActivity1 = (MainActivity) getActivity();
-        String strState1 = parentActivity1.GetStateConnect();
-        if(!strState1.equalsIgnoreCase("无连接"))
-        {
-            parentActivity1.mDialog.show();
-            parentActivity1.mDialog.setDlgMsg("读取中...");
-            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
-            parentActivity1.sendData(readOutMsg, "FFFF");
-        }
-        else
-        {
-            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
-        }
-    }
+//    private void verycutstatus(String readOutMsg) {
+//       // Log.d("zl",readOutMsg);
+//        MainActivity parentActivity1 = (MainActivity) getActivity();
+//        String strState1 = parentActivity1.GetStateConnect();
+//        if(!strState1.equalsIgnoreCase("无连接"))
+//        {
+//            parentActivity1.mDialog.show();
+//            parentActivity1.mDialog.setDlgMsg("读取中...");
+//            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
+//            parentActivity1.sendData(readOutMsg, "FFFF");
+//        }
+//        else
+//        {
+//            ToastUtils.showToast(getActivity(), "请先建立蓝牙连接!");
+//        }
+//    }
 
     @Override
     public void OndataCometoParse(String readOutMsg1, byte[] readOutBuf1) {
