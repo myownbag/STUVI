@@ -62,7 +62,7 @@ public class SensoritemsettingActivity extends Activity {
     int m_curposition=-1;
     TextView mLimitinfo;
     public CustomDialog mDialog;
-    byte sendbufread[]={(byte) 0xFD, 0x00 ,0x00 ,0x0D ,        0x00 ,0x19 ,0x00 ,        0x00 ,0x00 ,0x00
+    byte[] sendbufread={(byte) 0xFD, 0x00 ,0x00 ,0x0D ,        0x00 ,0x19 ,0x00 ,        0x00 ,0x00 ,0x00
             ,0x00 ,0x00 ,0x00 ,0x00 , (byte) 0xD9 ,0x00 ,0x0C , (byte) 0xA0};
     ArrayList<Map<String,String>> mSetitemdata=null;
     @Override
@@ -105,8 +105,8 @@ public class SensoritemsettingActivity extends Activity {
             String temptitle=intent.getStringExtra("name");
             boolean isfind=false;
             mtitle.setText(temptitle);
-            listcontent=new ArrayList<String>();
-            listvalue=new ArrayList<String>();
+            listcontent= new ArrayList<>();
+            listvalue= new ArrayList<>();
             String tempcontent=intent.getStringExtra("item1");
             if(position==1||position==2)
             {
@@ -434,7 +434,7 @@ public class SensoritemsettingActivity extends Activity {
         if(!strState1.equalsIgnoreCase(getString(R.string.title_not_connected)))
         {
             mDialog.show();
-            mDialog.setDlgMsg(getString(R.string.reading));
+            mDialog.setDlgMsg(getString(R.string.DIALOG_ITEM_WRITE));
             //String input1 = Constants.Cmd_Read_Alarm_Pressure;
             parentActivity1.sendData(readOutMsg, "FFFF");
         }
@@ -455,6 +455,7 @@ public class SensoritemsettingActivity extends Activity {
 
         @Override
         public void datacometoparse(String readOutMsg1, byte[] readOutBuf1) {
+            int i=0;
 //            ItemSetingActivity.this.mDialog.dismiss();
 //            Log.d("zl","\ndatacometoparse:"+CodeFormat.byteToHex(readOutBuf1,readOutBuf1.length).toUpperCase());
             ByteBuffer buf;
@@ -492,9 +493,15 @@ public class SensoritemsettingActivity extends Activity {
                         buf.putFloat(Float.valueOf(tem).floatValue());
                         buf.rewind();
                         buf.get(readOutBuf1,22+10*(m_curposition-1),4);
+                        //温度选项EMERSON不使用，全部填充为0
+//                        int i=0;
+                            for(i=0;i<9;i++)
+                            {
+                                readOutBuf1[36+i]=0x00;
+                            }
                         break;
                     case 3:
-                        int i=0;
+//                        int i=0;
                         for(i=0;i<9;i++)
                         {
                             readOutBuf1[36+i]=0x00;
