@@ -355,7 +355,7 @@ public static String baseinfo[][]; ///123
                     intent.putExtra("regaddr",1998);
                     break;
                 case R.id.but_layout_1999:
-                    intent.putExtra("title","Reg 1999");
+                    intent.putExtra("title",getString(R.string.EVC_Acquisition_SETTING_ITEM));
                     intent.putExtra("recordgap",mRecodeTmTx.getText().toString());
                     intent.putExtra("regaddr",1999);
                     break;
@@ -372,8 +372,9 @@ public static String baseinfo[][]; ///123
     public class OnmyOnItemClickListenerlistenerImp implements AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
             intent=new Intent(mainActivity, InstrumemtItemseetingActivity.class);
-            intent.putExtra("title","Reg "+(2000+mcurSelect));
+            intent.putExtra("title",getString(R.string.EVC_Acquisition_TYPE_ITEM));  //"Reg "+(2000+mcurSelect)
             putdata2000(intent,(2000+mcurSelect));
             startActivityForResult(intent, Constants.InstrumemtsetingFlag);
         }

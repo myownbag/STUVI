@@ -50,7 +50,7 @@ public class MyDlg extends Dialog {
                 MyDlg.this.dismiss();
             }
         });
-        setTitle("请选择");
+        setTitle(R.string.EVC_COM_FRAG_PLEASE_SELECT);
 //        Log.d("zl","MyDlg onCreate");
     }
     public  interface Onbutclicked

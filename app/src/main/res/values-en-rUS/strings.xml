@@ -10,15 +10,19 @@
     <string name="title_connected_to">connected to:</string>
     <string name="title_not_connected">not connected</string>
     <string name="reading">Read...</string>
+    <string name="DEVICE_NO_RESPONE">Device has no response</string>
+    <string name="PHONE_HAS_NO_BLUETOOTH">Do not support blue tooth,app will exit</string>
+    <string name="PRESS_AGAIN_EXIT">Press again to exit</string>
+<!--    <string name="BLUE_BUTTON_TEXT">Scan Device</string>-->
 
     <!--  DeviceListActivity -->
-    <string name="scanning">查找设备</string>
-    <string name="select_device">选择需要连接的设备</string>
-    <string name="none_paired">没有已配对设备</string>
-    <string name="none_found">没有发现设备</string>
-    <string name="title_paired_devices">已配对设备</string>
-    <string name="title_other_devices">其他可用设备</string>
-    <string name="button_scan">查找设备</string>
+    <string name="scanning">scann for device</string>
+    <string name="select_device">Select the device</string>
+    <string name="none_paired">No paired device</string>
+    <string name="none_found">No device</string>
+    <string name="title_paired_devices">paired device</string>
+    <string name="title_other_devices">Available device</string>
+    <string name="button_scan">Scan Device</string>
     <string name="point">.</string>
 
     <string name="hour_hint">时</string>
@@ -75,8 +79,10 @@
 
     <!--    EVC 相关信息设置-->
     <string name="EVC_COM_SETTING">Communication Setting</string>
+    <string name="EVC_Acquisition_SETTING_ITEM">Acquisition</string>
     <string name="EVC_Acquisition_SETTING">Acquisition Setting:</string>
     <string name="EVC_Acquisition_SETTING_STEP">Minute</string>
+    <string name="EVC_Acquisition_TYPE_ITEM">EVC TYPE</string>
     <string name="EVC_INSTRUMENT_TYPE">Protocol Setting</string>
     <string name="EVC_INSTRUMENT_ADDRESS">EVC Device Address</string>
     <string name="EVC_BAUD_RATE">Baud Rate</string>
@@ -95,13 +101,27 @@
     <string name="ANALOG_INPUT_LIMITE">Pressure Limit</string>
     <string name="ANALOG_UPPER_LIMITE">Upper pressure limit</string>
     <string name="ANALOG_LOWER_LIMITE">Lower pressure limit</string>
-    <string name="ANALOG_SCAN_FREQUENCE">Scan Frequency</string>
+    <string name="ANALOG_SCAN_FREQUENCE">Scan Monitor Setting</string>
     <string name="ANALOG_Acquisition_FREQUENCE">Acquisition Frequency</string>
+    <string name="UPPER_MUST_BIGGER">Upper pressure limit must be larger than lower pressure limit</string>
 
     <!--    Dialog information setting -->
-    <string name="DIALOG_INFORMATION">操作提示</string>
-    <string name="DIALOG_ACTION_INFORMATION">单击条目可以进行设置</string>
-    <string name="DIALOG_BUTTON_TEXT">确定</string>
+    <string name="DIALOG_INFORMATION">INFORMATION</string>
+    <string name="DIALOG_ACTION_INFORMATION">Click every item to set</string>
+    <string name="DIALOG_BUTTON_TEXT">OK</string>
+    <string name="DIALOG_SELECT_INFO">Please select the item you want</string>
+    <string name="DIALOG_ITEM_READ">Read data</string>
+    <string name="DIALOG_ITEM_WRITE">Write data</string>
+
+    <!--    gas alarm setting information-->
+
+    <string name="GAS_DETECT_SETTING_LOW_LIMITE">Low   threshold</string>
+    <string name="GAS_DETECT_SETTING_HIGH_LIMITE">High threshold</string>
+    <string name="GAS_HIGH_MUST_BIGGER">High threshold must be larger than Low threshold</string>
+    <string name="GAS_SENSOR_TYPE">Type</string>
+    <string name="GAS_SENSOR_ALARM_SETTING">Alarm Setting</string>
+    <string name="GAS_SCAN_FREQUENCE">Scan Monitor Setting</string>
+    <string name="GAS_Acquisition_FREQUENCE">Acquisition Setting</string>
 
     <string-array name="hour_display">
         <item>0</item>

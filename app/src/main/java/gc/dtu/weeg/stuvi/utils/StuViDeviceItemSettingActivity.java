@@ -76,6 +76,8 @@ public class StuViDeviceItemSettingActivity extends Activity {
 
     EditText mTextSetValues[] =new EditText[5];
 
+    ImageView ButReturn;
+
 
     ArrayList<String> m_setings;
     ArrayList<String> mResultSettingstr  = new ArrayList<>();
@@ -155,6 +157,15 @@ MainActivity mainActivity = MainActivity.getInstance();
         mstart4.setOnClickListener(new OnTextViewClicklinenterimpl());
         mend4 = findViewById(R.id.local_219_endtime4);
         mend4.setOnClickListener(new OnTextViewClicklinenterimpl());
+
+        ButReturn = findViewById(R.id.imgBackItemset);
+        ButReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StuViDeviceItemSettingActivity.this.setResult(0,getIntent());
+                StuViDeviceItemSettingActivity.this.finish();
+            }
+        });
 
         timeviews[0]=mstart1;
         timeviews[1]=mstart2;

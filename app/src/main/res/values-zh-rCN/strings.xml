@@ -11,10 +11,14 @@
     <string name="title_connected_to">已连接到:</string>
     <string name="title_not_connected">无连接</string>
     <string name="reading">读取中...</string>
+    <string name="DEVICE_NO_RESPONE">蓝牙无回应请重连</string>
+    <string name="PHONE_HAS_NO_BLUETOOTH">该设备不支持蓝牙，强制退出</string>
+    <string name="PRESS_AGAIN_EXIT">再按一次退出程序</string>
+<!--    <string name="BLUE_BUTTON_TEXT">查找设备</string>-->
 
 
     <!--  DeviceListActivity -->
-    <string name="scanning">查找设备</string>
+    <string name="scanning">查找设备...</string>
     <string name="select_device">选择需要连接的设备</string>
     <string name="none_paired">没有已配对设备</string>
     <string name="none_found">没有发现设备</string>
@@ -76,8 +80,10 @@
 
 <!--    EVC 相关信息设置-->
     <string name="EVC_COM_SETTING">通信参数设置</string>
+    <string name="EVC_Acquisition_SETTING_ITEM">数据扫描时间设置</string>
     <string name="EVC_Acquisition_SETTING">数据扫描时间:</string>
     <string name="EVC_Acquisition_SETTING_STEP">分钟</string>
+    <string name="EVC_Acquisition_TYPE_ITEM">仪表</string>
     <string name="EVC_INSTRUMENT_TYPE">仪表类型</string>
     <string name="EVC_INSTRUMENT_ADDRESS">仪表地址</string>
     <string name="EVC_BAUD_RATE">波特率</string>
@@ -99,11 +105,25 @@
     <string name="ANALOG_SCAN_FREQUENCE">扫描频率</string>
     <string name="ANALOG_Acquisition_FREQUENCE">采集频率</string>
     <string name="ANALOG_PARAMETER_ERROR">数据未填充完整</string>
+    <string name="UPPER_MUST_BIGGER">高报警必须大于低报警</string>
 
     <!--    Dialog information setting -->
     <string name="DIALOG_INFORMATION">操作提示</string>
     <string name="DIALOG_ACTION_INFORMATION">单击条目可以进行设置</string>
     <string name="DIALOG_BUTTON_TEXT">确定</string>
+    <string name="DIALOG_SELECT_INFO">请选择需要的操作</string>
+    <string name="DIALOG_ITEM_READ">读数据</string>
+    <string name="DIALOG_ITEM_WRITE">写数据</string>
+
+<!--    gas alarm setting information-->
+
+    <string name="GAS_DETECT_SETTING_LOW_LIMITE">低报警</string>
+    <string name="GAS_DETECT_SETTING_HIGH_LIMITE">高报警</string>
+    <string name="GAS_HIGH_MUST_BIGGER">高报警必须大于低报警</string>
+    <string name="GAS_SENSOR_TYPE">型号</string>
+    <string name="GAS_SENSOR_ALARM_SETTING">报警设置</string>
+    <string name="GAS_SCAN_FREQUENCE">扫描频率</string>
+    <string name="GAS_Acquisition_FREQUENCE">采集频率</string>
 
     <string-array name="hour_display">
         <item>0</item>

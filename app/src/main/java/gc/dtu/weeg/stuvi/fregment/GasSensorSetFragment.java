@@ -45,16 +45,7 @@ public class GasSensorSetFragment extends BaseFragment {
     int m_position;
 
     //基础数据
-    public static String gassensorinfo[][]=
-            {
-                    {"3","无","0"},
-                    {"3","WS2100-TTL","65534"},
-                    {"3","WS2100-485","65533"},
-                    {"3","MIPEX-TTL","65532"},
-                    {"3","MIPEX-485","65531"},
-                    {"3","4-20 mA","65530"},
-                    {"3","手动输入","65535"},
-            };
+    public static String[][] gassensorinfo;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,9 +65,23 @@ public class GasSensorSetFragment extends BaseFragment {
         mButcommand=mView.findViewById(R.id.tv_sensor_btn_write);
         mlayouttime=mView.findViewById(R.id.sensor_timeset);
 
+        InitResourcedata();
         initview();
         initdata();
         return mView;
+    }
+
+    private void InitResourcedata() {
+        gassensorinfo = new String[][]
+        {
+            {"3",getString(R.string.EVC_CHECK_BIT_NONE),"0"},
+            {"3","WS2110-C16T","65534"},
+            {"3","WS2110-M02","65533"},
+//                    {"3","MIPEX-TTL","65532"},
+//                    {"3","MIPEX-485","65531"},
+//                    {"3","4-20 mA","65530"},
+//                    {"3","手动输入","65535"},
+        };
     }
 
     private void initdata() {
@@ -246,7 +251,7 @@ public class GasSensorSetFragment extends BaseFragment {
             switch (vid)
             {
                 case R.id.sensor_press1set:
-                    serverIntent.putExtra("name","报警器类型");
+                    serverIntent.putExtra("name",getString(R.string.GAS_SENSOR_TYPE));
                     serverIntent.putExtra("position",5);
                     serverIntent.putExtra("item1",mgastype.getText().toString());
                     serverIntent.putExtra("item2",mgasH.getText().toString());
@@ -255,7 +260,7 @@ public class GasSensorSetFragment extends BaseFragment {
 //                   Log.d("zl","R.id.sensor_press1set:");
                     break;
                 case R.id.sensor_timeset:
-                    serverIntent.putExtra("name","时间");
+                    serverIntent.putExtra("name","");
                     serverIntent.putExtra("position",6);
                     serverIntent.putExtra("item1","");
                     serverIntent.putExtra("item2",mtime1.getText().toString());

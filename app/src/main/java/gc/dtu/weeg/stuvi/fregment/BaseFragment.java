@@ -25,7 +25,7 @@ public abstract class BaseFragment extends Fragment {
             position=bundle.getInt("position");
             str=bundle.getString("extra");
 //            Log.d("zl","position:"+position);
-//            Log.d("zl","title:"+str);
+            Log.d("zl","title:"+str);
         }
         else
         {

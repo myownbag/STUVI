@@ -35,6 +35,7 @@ public class SensoritemsettingActivity extends Activity {
     public MainActivity mainActivity;
     RelativeLayout  selectlayout;
     RelativeLayout  anologinputlayout;
+    RelativeLayout  mLimitContainer;
     TextView  mtitle;
     TextView  text1;
     TextView  text2;
@@ -51,7 +52,7 @@ public class SensoritemsettingActivity extends Activity {
     ArrayList<String> listvalue;
     int m_currentselect=0;
     int m_curposition=-1;
-
+    TextView mLimitinfo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,8 @@ public class SensoritemsettingActivity extends Activity {
         editText1=findViewById(R.id.sensor_set_item_hight_input);
         editText2=findViewById(R.id.sensor_set_item_low_input);
         mAnologLableView=findViewById(R.id.sensor_set_item_manual_label);
+        mLimitinfo = findViewById(R.id.sensor_limit_info);
+        mLimitContainer = findViewById(R.id.sensor_limit_info_container);
         initview();
 
     }
@@ -163,29 +166,34 @@ public class SensoritemsettingActivity extends Activity {
                 case 3:
                     selectlayout.setVisibility(View.VISIBLE);
                     anologinputlayout.setVisibility(View.VISIBLE);
-                    text1.setText("高报警(KPa)");
-                    text2.setText("低报警(KPa)");
+                    text1.setText(R.string.ANALOG_UPPER_LIMITE);
+                    text2.setText(R.string.ANALOG_LOWER_LIMITE);
                     m_range.setText(tempcontent);
                     editText1.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED);
                     editText2.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED);
+                    mLimitinfo.setText(getString(R.string.ANALOG_INPUT_LIMITE));
+                    mLimitContainer.setVisibility(View.VISIBLE);
                     break;
                 case 4:
                 case 6:
                     selectlayout.setVisibility(View.GONE);
                     anologinputlayout.setVisibility(View.GONE);
-                    text1.setText("扫描时间(秒)");
-                    text2.setText("记录时间(分)");
+                    text1.setText(R.string.ANALOG_SCAN_FREQUENCE);
+                    text2.setText(R.string.ANALOG_Acquisition_FREQUENCE);
                     editText1.setInputType(InputType.TYPE_CLASS_NUMBER);
                     editText2.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    mLimitContainer.setVisibility(View.GONE);
                     break;
                 case 5:
                     selectlayout.setVisibility(View.VISIBLE);
                     anologinputlayout.setVisibility(View.VISIBLE);
-                    text1.setText("高报警");
-                    text2.setText("低报警");
+                    text1.setText(R.string.GAS_DETECT_SETTING_LOW_LIMITE);
+                    text2.setText(R.string.GAS_DETECT_SETTING_HIGH_LIMITE);
                     m_range.setText(tempcontent);
                     editText1.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED);
                     editText2.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED);
+                    mLimitinfo.setText(getString(R.string.GAS_SENSOR_ALARM_SETTING));
+                    mLimitContainer.setVisibility(View.VISIBLE);
                     break;
             }
             editText1.setText(intent.getStringExtra("item2"));
@@ -282,7 +290,7 @@ public class SensoritemsettingActivity extends Activity {
                 {
                     if(m_range.length()==0)
                     {
-                        Toast.makeText(SensoritemsettingActivity.this,"请完善信息",Toast.LENGTH_SHORT).show();
+                        ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.ANALOG_PARAMETER_ERROR));
                         SensoritemsettingActivity.this.setResult(-1,intent);
                         return;
                     }
@@ -298,15 +306,23 @@ public class SensoritemsettingActivity extends Activity {
 
              if(m_currentselect!=0&&m_currentselect!=-1)
              {
+                 int position=intent.getIntExtra("position",-1);
                  if(editText1.length()==0||editText2.length()==0)
                  {
-                     Toast.makeText(SensoritemsettingActivity.this,"请完善信息",Toast.LENGTH_SHORT).show();
+                     ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.ANALOG_PARAMETER_ERROR));
                      SensoritemsettingActivity.this.setResult(-1,intent);
                      return;
                  }
                  if(Float.valueOf(editText1.getText().toString())<Float.valueOf(editText2.getText().toString()))
                  {
-                     Toast.makeText(SensoritemsettingActivity.this,"高报警必须大于低报警",Toast.LENGTH_SHORT).show();
+                     if(position<=3)
+                     {
+                         ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.UPPER_MUST_BIGGER));
+                     }
+                     else if(position == 5)
+                     {
+                         ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.GAS_HIGH_MUST_BIGGER));
+                     }
                      SensoritemsettingActivity.this.setResult(-1,intent);
                      return;
                  }

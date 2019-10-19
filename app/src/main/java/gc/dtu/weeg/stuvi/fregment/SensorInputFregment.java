@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xutils.db.Selector;
+
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -142,25 +144,32 @@ public class SensorInputFregment extends BaseFragment {
         mButcommand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mIsatart=true;
                 MyDlg dlg=new MyDlg(MainActivity.getInstance());
                 dlg.SetOnbutclickListernerdlg(new MyDlg.Onbutclicked() {
                     @Override
                     public void Onbutclicked(int select) {
+                        int i;
                         if(select==1) //读数据
                         {
-                           Toast.makeText(MainActivity.getInstance(),"read",Toast.LENGTH_SHORT).show();
-                            CodeFormat.crcencode(sendbufread);
-                            String readOutMsg = DigitalTrans.byte2hex(sendbufread);
-                            Log.d("zl",readOutMsg);
-                            verycutstatus(readOutMsg);
+                          ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.device_button_action));
+                           CodeFormat.crcencode(sendbufread);
+                           String readOutMsg = DigitalTrans.byte2hex(sendbufread);
+                           Log.d("zl",readOutMsg);
+                           verycutstatus(readOutMsg);
                         }
                         else if(select==0)//写数据
                         {
-                           Toast.makeText(MainActivity.getInstance(),"write",Toast.LENGTH_SHORT).show();
+                           ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.device_button_action_write));
+                           //温度选项EMERSON不使用，全部填充为0
+                            for(i=0;i<9;i++)
+                            {
+                                sendbufwrite[36+i]=0x00;
+                            }
                             CodeFormat.crcencode(sendbufwrite);
                             String readOutMsg = DigitalTrans.byte2hex(sendbufwrite);
-                            Log.d("zl","写:"+ CodeFormat.byteToHex(sendbufwrite,sendbufwrite.length));
+                            Log.d("zl","写:"+ CodeFormat.byteToHex(sendbufwrite,sendbufwrite.length).toUpperCase());
                             if(checkinput())
                             {
                                 verycutstatus(readOutMsg);
@@ -186,10 +195,10 @@ public class SensorInputFregment extends BaseFragment {
                     {
                        return false;
                     }
-                    else if(mtempmode.getText().length()==0)
-                    {
-                        return false;
-                    }
+//                    else if(mtempmode.getText().length()==0)
+//                    {
+//                        return false;
+//                    }
                     else if(mtime1.getText().length()==0)
                     {
                         return false;

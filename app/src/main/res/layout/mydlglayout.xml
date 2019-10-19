@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/confused"
+        android:src="@drawable/emerson_logo"
         android:background="#fff"
         />
     <View
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="请选择需要的操作"
+            android:text="@string/DIALOG_SELECT_INFO"
             />
     </RelativeLayout>>
 
@@ -37,12 +37,12 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="读数据"
+                android:text="@string/DIALOG_ITEM_READ"
                 android:id="@+id/selectread"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:text="写数据"
+                android:text="@string/DIALOG_ITEM_WRITE"
                 android:id="@+id/selectwrite"/>
 
 
@@ -70,7 +70,7 @@
             android:layout_marginStart="20dp"
             android:textSize="16sp"
             android:background="@drawable/round_button"
-            android:text="确定"
+            android:text="@string/DIALOG_BUTTON_TEXT"
             android:textColor="#fff" />
 
     </LinearLayout>

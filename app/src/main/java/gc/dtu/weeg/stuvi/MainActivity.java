@@ -209,7 +209,7 @@ public class MainActivity extends FragmentActivity {
                         case BluetoothState.STATE_CONNECTED:
                             //setStatus(getString(R.string.title_connected_to,
                             //		mConnectedDeviceName));
-                            mTxtStatus.setText("已连接到:" + mConnectedDeviceName);
+                            mTxtStatus.setText(getString(R.string.title_connected_to) + mConnectedDeviceName);
 
                             // mConversationArrayAdapter.clear();
                             mIsconnect = true;
@@ -269,7 +269,7 @@ public class MainActivity extends FragmentActivity {
                 case BluetoothState.MESSAGE_DEVICE_NAME:
                     // save the connected device's name
                     mConnectedDeviceName = msg.getData().getString(BluetoothState.DEVICE_NAME);
-                    ToastUtils.showToast(getApplicationContext(), "连接到" + mConnectedDeviceName);
+                    ToastUtils.showToast(getApplicationContext(), getString(R.string.title_connected_to) + mConnectedDeviceName);
 
                     break;
                 case BluetoothState.MESSAGE_TOAST:
@@ -290,7 +290,7 @@ public class MainActivity extends FragmentActivity {
                     mThreedTimeout = null;
                     mDialog.dismiss();
                     // ToastUtils.showToast(getActivity(), "数据长度异常");
-                    Toast.makeText(MainActivity.this, "蓝牙无回应请重连", Toast.LENGTH_SHORT).show();
+                    ToastUtils.showToast(MainActivity.this, getString(R.string.DEVICE_NO_RESPONE));
                     break;
                 case BluetoothState.MESSAGE_BLOCK_TIMEOUT:
 //                    if(mCurrentpage==fregment3) {
@@ -507,7 +507,7 @@ public class MainActivity extends FragmentActivity {
             @Override
             public void onTimeOut(CustomDialog dialog) {
                 dialog.dismiss();
-                ToastUtils.showToast(getBaseContext(), "超时啦!");
+                ToastUtils.showToast(getBaseContext(), getString(R.string.timeout));
             }
         });
         mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -539,7 +539,7 @@ public class MainActivity extends FragmentActivity {
         // If the adapter is null, then Bluetooth is not supported
         if (mBluetoothAdapter == null)
         {
-            ToastUtils.showToast(this, "该设备不支持蓝牙，强制退出");
+            ToastUtils.showToast(this, getString(R.string.PHONE_HAS_NO_BLUETOOTH));
             finish();
         }
     }
@@ -577,7 +577,7 @@ public class MainActivity extends FragmentActivity {
                 } else {
                     // User did not enable Bluetooth or an error occured
                     // Log.d(TAG, "BT not enabled");
-                    ToastUtils.showToast(this, "蓝牙没有打开，程序退出");
+                    ToastUtils.showToast(this, getString(R.string.bt_not_enabled_leaving));
 
                     finish();
                 }
@@ -661,7 +661,7 @@ public class MainActivity extends FragmentActivity {
 
         if (event.getAction() == KeyEvent.ACTION_DOWN && event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
-                ToastUtils.showToast(this, "再按一次退出程序");
+                ToastUtils.showToast(this, getString(R.string.PRESS_AGAIN_EXIT));
                 exitTime = System.currentTimeMillis();
             } else {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
