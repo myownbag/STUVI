@@ -439,30 +439,30 @@ public class SensorInputFregment extends BaseFragment {
         {
             mIsatart=false;
         }
-        if(index==position)
-        {
-            sp = MainActivity.getInstance().getSharedPreferences("User", Context.MODE_PRIVATE);
-            int inftshow=sp.getInt("info",-1);
-            if(inftshow!=1)
-            {
-                Dialog dialog = new AlertDialog.Builder(MainActivity.getInstance()) // 实例化对象
-                        .setIcon(R.drawable.i_ve_got_it) 						// 设置显示图片
-                        .setTitle(getString(R.string.DIALOG_INFORMATION)) 							// 设置显示标题
-                        .setMessage(getString(R.string.DIALOG_BUTTON_TEXT)) 				// 设置显示内容
-                        .setPositiveButton(getString(R.string.DIALOG_BUTTON_TEXT), 						// 增加一个确定按钮
-                                new DialogInterface.OnClickListener() {	// 设置操作监听
-                                    public void onClick(DialogInterface dialog,
-                                                        int whichButton) { 			// 单击事件
-                                        SharedPreferences.Editor edit = sp.edit();
-                                        edit.putInt("info",1);
-                                        edit.commit();
-                                    }
-                                }).create(); 							// 创建Dialog
-                dialog.show();
-            }
+//        if(index==position)
+//        {
+//            sp = MainActivity.getInstance().getSharedPreferences("User", Context.MODE_PRIVATE);
+//            int inftshow=sp.getInt("info",-1);
+//            if(inftshow!=1)
+//            {
+//                Dialog dialog = new AlertDialog.Builder(MainActivity.getInstance()) // 实例化对象
+//                        .setIcon(R.drawable.i_ve_got_it) 						// 设置显示图片
+//                        .setTitle(getString(R.string.DIALOG_INFORMATION)) 							// 设置显示标题
+//                        .setMessage(getString(R.string.DIALOG_BUTTON_TEXT)) 				// 设置显示内容
+//                        .setPositiveButton(getString(R.string.DIALOG_BUTTON_TEXT), 						// 增加一个确定按钮
+//                                new DialogInterface.OnClickListener() {	// 设置操作监听
+//                                    public void onClick(DialogInterface dialog,
+//                                                        int whichButton) { 			// 单击事件
+//                                        SharedPreferences.Editor edit = sp.edit();
+//                                        edit.putInt("info",1);
+//                                        edit.commit();
+//                                    }
+//                                }).create(); 							// 创建Dialog
+//                dialog.show();
+//            }
 //                 Toast.makeText(MainActivity.getInstance(),"单击各个条目进行设置",Toast.LENGTH_SHORT).show();
-
-        }
+//
+//        }
     }
 
 //    private  class Oncurrentpageselect implements MainActivity.OnPageSelectedinviewpager
