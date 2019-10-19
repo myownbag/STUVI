@@ -13,6 +13,7 @@
     <string name="DEVICE_NO_RESPONE">蓝牙无回应请重连</string>
     <string name="PHONE_HAS_NO_BLUETOOTH">该设备不支持蓝牙，强制退出</string>
     <string name="PRESS_AGAIN_EXIT">再按一次退出程序</string>
+    <string name="DEVICE_SEETING_ERROR">数据写入失败</string>
 <!--    <string name="BLUE_BUTTON_TEXT">查找设备</string>-->
 
     <!--  DeviceListActivity -->

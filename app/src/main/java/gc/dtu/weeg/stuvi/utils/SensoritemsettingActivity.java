@@ -2,10 +2,13 @@ package gc.dtu.weeg.stuvi.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.icu.text.UnicodeSetSpanner;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -19,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +33,7 @@ import gc.dtu.weeg.stuvi.MainActivity;
 import gc.dtu.weeg.stuvi.R;
 import gc.dtu.weeg.stuvi.fregment.GasSensorSetFragment;
 import gc.dtu.weeg.stuvi.fregment.SensorInputFregment;
+import gc.dtu.weeg.stuvi.myview.CustomDialog;
 
 
 public class SensoritemsettingActivity extends Activity {
@@ -43,6 +49,8 @@ public class SensoritemsettingActivity extends Activity {
     EditText m_range;
     EditText editText1;
     EditText editText2;
+    Boolean misRead;
+    Boolean misWrite;
 
     TextView mAnologLableView;
 
@@ -53,6 +61,10 @@ public class SensoritemsettingActivity extends Activity {
     int m_currentselect=0;
     int m_curposition=-1;
     TextView mLimitinfo;
+    public CustomDialog mDialog;
+    byte sendbufread[]={(byte) 0xFD, 0x00 ,0x00 ,0x0D ,        0x00 ,0x19 ,0x00 ,        0x00 ,0x00 ,0x00
+            ,0x00 ,0x00 ,0x00 ,0x00 , (byte) 0xD9 ,0x00 ,0x0C , (byte) 0xA0};
+    ArrayList<Map<String,String>> mSetitemdata=null;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +90,8 @@ public class SensoritemsettingActivity extends Activity {
     }
 
     private void initview() {
-
+            initdialog();
+            misRead = false;
             int position=intent.getIntExtra("position",-1);
             m_curposition=position;
             if(position==5)
@@ -165,7 +178,7 @@ public class SensoritemsettingActivity extends Activity {
                 case 2:
                 case 3:
                     selectlayout.setVisibility(View.VISIBLE);
-                    anologinputlayout.setVisibility(View.VISIBLE);
+//                    anologinputlayout.setVisibility(View.VISIBLE);
                     text1.setText(R.string.ANALOG_UPPER_LIMITE);
                     text2.setText(R.string.ANALOG_LOWER_LIMITE);
                     m_range.setText(tempcontent);
@@ -186,7 +199,7 @@ public class SensoritemsettingActivity extends Activity {
                     break;
                 case 5:
                     selectlayout.setVisibility(View.VISIBLE);
-                    anologinputlayout.setVisibility(View.VISIBLE);
+//                    anologinputlayout.setVisibility(View.VISIBLE);
                     text1.setText(R.string.GAS_DETECT_SETTING_LOW_LIMITE);
                     text2.setText(R.string.GAS_DETECT_SETTING_HIGH_LIMITE);
                     m_range.setText(tempcontent);
@@ -216,7 +229,9 @@ public class SensoritemsettingActivity extends Activity {
         if(position==1||position==2||position==5)
         {
             if(m_currentselect==sizemax)
-                anologinputlayout.setVisibility(View.VISIBLE);
+            {
+//                anologinputlayout.setVisibility(View.VISIBLE);
+            }
             else
                 anologinputlayout.setVisibility(View.GONE);
         }
@@ -236,6 +251,29 @@ public class SensoritemsettingActivity extends Activity {
         });
         butcommit.setOnClickListener(new ButtonOnclicklistenerimp());
     }
+
+    private void initdialog() {
+
+        mDialog = CustomDialog.createProgressDialog(this, Constants.TimeOutSecond, new CustomDialog.OnTimeOutListener() {
+            @Override
+            public void onTimeOut(CustomDialog dialog) {
+                dialog.dismiss();
+                ToastUtils.showToast(getBaseContext(), getString(R.string.timeout));
+            }
+        });
+        mDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+//                Log.d("zl","dialog has been cancelde");
+//                if(mCurrentpage!=null)
+//                {
+//                    mCurrentpage.Ondlgcancled();
+//                }
+            }
+        });
+        MainActivity.getInstance().setOndataparse(new datacometoparse());
+    }
+
     public void test()
     {
 
@@ -247,7 +285,7 @@ public class SensoritemsettingActivity extends Activity {
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(listvalue.get(position).equals("65535"))
                 {
-                    anologinputlayout.setVisibility(View.VISIBLE);
+//                    anologinputlayout.setVisibility(View.VISIBLE);
 //                    anologinputlayout.setFocusable(true);
 //                    anologinputlayout.setFocusableInTouchMode(true);
                     anologinputlayout.requestFocus();
@@ -356,17 +394,228 @@ public class SensoritemsettingActivity extends Activity {
             {
                 case 1:
                 case 2:
+                     if(Float.valueOf(editText1.getText().toString())<Float.valueOf(editText2.getText().toString()))
+                     {
+                         ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.UPPER_MUST_BIGGER));
+                         return;
+                     }
+
                 case 3:
                 case 4:
+                    sendbufread[14]= (byte) 0xD9;
                     mainActivity.fregment4.updateallsettingitems(itemdata);
                     break;
                 case 5:
+                    if(Float.valueOf(editText1.getText().toString())>Float.valueOf(editText2.getText().toString()))
+                    {
+                        ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.GAS_HIGH_MUST_BIGGER));
+                        return;
+                    }
                 case 6:
+                    sendbufread[14]= (byte) 0xDA;
                     mainActivity.fregment5.updateallsettingitems(itemdata);
                     break;
             }
-            SensoritemsettingActivity.this.setResult(1,intent);
-            SensoritemsettingActivity.this.finish();
+//            SensoritemsettingActivity.this.setResult(1,intent);
+//            SensoritemsettingActivity.this.finish();
+            mSetitemdata = itemdata;
+            CodeFormat.crcencode(sendbufread);
+            String readOutMsg = DigitalTrans.byte2hex(sendbufread);
+            Log.d("zl","\nOnclick:"+readOutMsg);
+            misRead = true;
+            verycutstatus(readOutMsg);
+
+        }
+    }
+
+    public void verycutstatus(String readOutMsg) {
+        MainActivity parentActivity1 = MainActivity.getInstance();
+        String strState1 = parentActivity1.GetStateConnect();
+        if(!strState1.equalsIgnoreCase(getString(R.string.title_not_connected)))
+        {
+            mDialog.show();
+            mDialog.setDlgMsg(getString(R.string.reading));
+            //String input1 = Constants.Cmd_Read_Alarm_Pressure;
+            parentActivity1.sendData(readOutMsg, "FFFF");
+        }
+        else
+        {
+            ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.not_connected));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MainActivity.getInstance().setOndataparse(null);
+    }
+
+    private class datacometoparse  implements MainActivity.Ondataparse
+    {
+
+        @Override
+        public void datacometoparse(String readOutMsg1, byte[] readOutBuf1) {
+//            ItemSetingActivity.this.mDialog.dismiss();
+//            Log.d("zl","\ndatacometoparse:"+CodeFormat.byteToHex(readOutBuf1,readOutBuf1.length).toUpperCase());
+            ByteBuffer buf;
+            if(misRead==true)
+            {
+               // return;
+                misRead = false;
+                if(mSetitemdata==null)
+                {
+                    return;
+                }
+                readOutBuf1[5]=0x15;
+                switch (m_curposition)
+                {
+                    case 1:
+                    case 2:
+                        String tem;
+                        tem=mSetitemdata.get(0).get("settings");
+                        buf=ByteBuffer.allocateDirect(4); //无额外内存的直接缓存
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);//默认大端，小端用这行
+                        buf.putInt(Integer.valueOf(tem));
+                        buf.rewind();
+                        buf.get(readOutBuf1,16+10*(m_curposition-1),2);
+
+                        tem=mSetitemdata.get(1).get("settings");
+                        buf=ByteBuffer.allocateDirect(4);
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);
+                        buf.putFloat(Float.valueOf(tem).floatValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,18+10*(m_curposition-1),4);
+
+                        tem=mSetitemdata.get(2).get("settings");
+                        buf=ByteBuffer.allocateDirect(4);
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);
+                        buf.putFloat(Float.valueOf(tem).floatValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,22+10*(m_curposition-1),4);
+                        break;
+                    case 3:
+                        int i=0;
+                        for(i=0;i<9;i++)
+                        {
+                            readOutBuf1[36+i]=0x00;
+                        }
+                        break;
+                    case 4:
+                        tem=mSetitemdata.get(0).get("settings");
+                        buf=ByteBuffer.allocateDirect(4); //无额外内存的直接缓存
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);//默认大端，小端用这行
+                        buf.putInt(Integer.valueOf(tem).intValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,45,2);
+
+                        tem=mSetitemdata.get(1).get("settings");
+                        buf=ByteBuffer.allocateDirect(4); //无额外内存的直接缓存
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);//默认大端，小端用这行
+                        buf.putInt(Integer.valueOf(tem).intValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,47,2);
+                        break;
+                    case 5:
+                        tem=mSetitemdata.get(0).get("settings");
+                        buf=ByteBuffer.allocateDirect(4); //无额外内存的直接缓存
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);//默认大端，小端用这行
+                        buf.putInt(Integer.valueOf(tem));
+                        buf.rewind();
+                        buf.get(readOutBuf1,16,2);
+
+                        tem=mSetitemdata.get(2).get("settings");   //低报警
+                        buf=ByteBuffer.allocateDirect(4);
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);
+                        buf.putFloat(Float.valueOf(tem).floatValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,18,4);
+
+                        tem=mSetitemdata.get(1).get("settings");  //高报警
+                        buf=ByteBuffer.allocateDirect(4);
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);
+                        buf.putFloat(Float.valueOf(tem).floatValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,22,4);
+                        break;
+                    case 6:
+                        tem=mSetitemdata.get(0).get("settings");
+                        buf=ByteBuffer.allocateDirect(4); //无额外内存的直接缓存
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);//默认大端，小端用这行
+                        buf.putInt(Integer.valueOf(tem).intValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,26,2);
+
+                        tem=mSetitemdata.get(1).get("settings");
+                        buf=ByteBuffer.allocateDirect(4); //无额外内存的直接缓存
+                        buf=buf.order(ByteOrder.LITTLE_ENDIAN);//默认大端，小端用这行
+                        buf.putInt(Integer.valueOf(tem).intValue());
+                        buf.rewind();
+                        buf.get(readOutBuf1,28,2);
+                        break;
+                }
+                CodeFormat.crcencode(readOutBuf1);
+                String readOutMsg = DigitalTrans.byte2hex(readOutBuf1);
+                Log.d("zl","\ndatacometoparse and misRead is true:"+readOutMsg);
+                misWrite = true;
+                verycutstatus(readOutMsg);
+                return;
+            }
+            if(misWrite == true)
+            {
+                misWrite = false;
+                byte[] bufcrc = new byte[readOutBuf1.length+2];
+                buf=ByteBuffer.allocateDirect(readOutBuf1.length);
+                buf.order(ByteOrder.LITTLE_ENDIAN);
+                buf.put(readOutBuf1);
+                buf.rewind();
+                buf.get(bufcrc,0,readOutBuf1.length);
+               if(CodeFormat.crcencode(bufcrc)==0)
+               {
+                   ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.STU_SETTING_RESULT_OK));
+                   SensoritemsettingActivity.this.setResult(1,intent);
+                   SensoritemsettingActivity.this.finish();
+               }
+               else
+               {
+                   ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.DEVICE_SEETING_ERROR));
+               }
+                Log.d("zl","\ndatacometoparse and misRead is misWrite:"+readOutMsg1);
+            }
+//            if(mCurCMD<sendbufs.size())
+//            {
+//                byte[] recvs=new byte[sendbufs.get(mCurCMD).length+2];
+//                ByteBuffer buf = ByteBuffer.allocateDirect(sendbufs.get(mCurCMD).length);
+//                buf.order(ByteOrder.LITTLE_ENDIAN);
+//                buf.put(sendbufs.get(mCurCMD));
+//                buf.rewind();
+//                buf.get(recvs,0,sendbufs.get(mCurCMD).length);
+//                if(CodeFormat.crcencode(recvs)==0)
+//                {
+//                    ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.correct));
+//                }
+//                else
+//                {
+//                    ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.wrong));
+//                    mDialog.dismiss();
+//                    StuViDeviceItemSettingActivity.this.setResult(0,getIntent());
+//                    StuViDeviceItemSettingActivity.this.finish();
+//                    return;
+//                }
+//            }
+//            mCurCMD++;
+//            if(mCurCMD<sendbufs.size())
+//            {
+//                String readOutMsg = DigitalTrans.byte2hex(sendbufs.get(mCurCMD));
+//
+//                Log.d("zl",CodeFormat.byteToHex(sendbufs.get(mCurCMD),sendbufs.get(mCurCMD).length));
+//                verycutstatus(readOutMsg);
+//            }
+//            else
+//            {
+//                mDialog.dismiss();
+////                StuViDeviceItemSettingActivity.this.setResult(1,getIntent());
+////                StuViDeviceItemSettingActivity.this.finish();
+//            }
         }
     }
 }

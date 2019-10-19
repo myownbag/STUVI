@@ -479,7 +479,7 @@
                 android:layout_marginStart="20dp"
                 android:textSize="16sp"
                 android:background="@drawable/round_button"
-                android:text="@string/device_button_action_CMD"
+                android:text="@string/device_button_action"
                 android:textColor="#fff" />
 
         </LinearLayout>

@@ -146,43 +146,47 @@ public class SensorInputFregment extends BaseFragment {
             public void onClick(View v) {
 
                 mIsatart=true;
-                MyDlg dlg=new MyDlg(MainActivity.getInstance());
-                dlg.SetOnbutclickListernerdlg(new MyDlg.Onbutclicked() {
-                    @Override
-                    public void Onbutclicked(int select) {
-                        int i;
-                        if(select==1) //读数据
-                        {
-                          ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.device_button_action));
-                           CodeFormat.crcencode(sendbufread);
-                           String readOutMsg = DigitalTrans.byte2hex(sendbufread);
-                           Log.d("zl",readOutMsg);
-                           verycutstatus(readOutMsg);
-                        }
-                        else if(select==0)//写数据
-                        {
-                           ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.device_button_action_write));
-                           //温度选项EMERSON不使用，全部填充为0
-                            for(i=0;i<9;i++)
-                            {
-                                sendbufwrite[36+i]=0x00;
-                            }
-                            CodeFormat.crcencode(sendbufwrite);
-                            String readOutMsg = DigitalTrans.byte2hex(sendbufwrite);
-                            Log.d("zl","写:"+ CodeFormat.byteToHex(sendbufwrite,sendbufwrite.length).toUpperCase());
-                            if(checkinput())
-                            {
-                                verycutstatus(readOutMsg);
-                            }
-                            else
-                            {
-                               ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.ANALOG_PARAMETER_ERROR));
-                            }
-                        }
-                    }
-                });
-//                Log.d("zl","dlg.show()");
-                dlg.show();
+                CodeFormat.crcencode(sendbufread);
+                String readOutMsg = DigitalTrans.byte2hex(sendbufread);
+                Log.d("zl",readOutMsg);
+                verycutstatus(readOutMsg);
+//                MyDlg dlg=new MyDlg(MainActivity.getInstance());
+//                dlg.SetOnbutclickListernerdlg(new MyDlg.Onbutclicked() {
+//                    @Override
+//                    public void Onbutclicked(int select) {
+//                        int i;
+//                        if(select==1) //读数据
+//                        {
+//                          ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.device_button_action));
+//                           CodeFormat.crcencode(sendbufread);
+//                           String readOutMsg = DigitalTrans.byte2hex(sendbufread);
+//                           Log.d("zl",readOutMsg);
+//                           verycutstatus(readOutMsg);
+//                        }
+//                        else if(select==0)//写数据
+//                        {
+//                           ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.device_button_action_write));
+//                           //温度选项EMERSON不使用，全部填充为0
+//                            for(i=0;i<9;i++)
+//                            {
+//                                sendbufwrite[36+i]=0x00;
+//                            }
+//                            CodeFormat.crcencode(sendbufwrite);
+//                            String readOutMsg = DigitalTrans.byte2hex(sendbufwrite);
+//                            Log.d("zl","写:"+ CodeFormat.byteToHex(sendbufwrite,sendbufwrite.length).toUpperCase());
+//                            if(checkinput())
+//                            {
+//                                verycutstatus(readOutMsg);
+//                            }
+//                            else
+//                            {
+//                               ToastUtils.showToast(MainActivity.getInstance(),getString(R.string.ANALOG_PARAMETER_ERROR));
+//                            }
+//                        }
+//                    }
+//                });
+////                Log.d("zl","dlg.show()");
+//                dlg.show();
             }
 
             private Boolean checkinput() {

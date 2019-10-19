@@ -2,20 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:weightSum="3">
+    android:weightSum="6">
     <LinearLayout
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/sensor_press1set"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_weight="3"
+        android:orientation="vertical"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="#fff" >
+            android:background="#fff"
+            >
             <TextView
                 android:id="@+id/tv_sensor_type1_label"
                 android:layout_width="wrap_content"
@@ -31,11 +34,8 @@
                 android:id="@+id/tv_sensor_type1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/tv_sensor_type1_label"
-                android:layout_toRightOf="@+id/tv_sensor_type1_label"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_centerInParent="true"
+               android:layout_alignParentRight="true"
                 android:textColor="#444"
                 android:textSize="14sp" />
             <TextView
@@ -43,86 +43,106 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/tv_sensor_type1"
-                android:layout_toRightOf="@+id/tv_sensor_type1"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
                 android:textColor="#444"
                 android:textSize="14sp" />
         </RelativeLayout>
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="20dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp">
-            <TextView
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/GAS_SENSOR_ALARM_SETTING"
-                android:layout_marginLeft="10dp"
-                />
-            android:background="@color/pickerview_wheelview_textcolor_divider"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    >
+                    <TextView
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/GAS_SENSOR_ALARM_SETTING"
+                        android:layout_marginLeft="10dp"
+                        />
 
-        </RelativeLayout>
+                </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:weightSum="8"
-            android:background="#fff" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:background="#fff" >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        >
 
-            <TextView
-                android:id="@+id/tv_sensor_pressvalue1h_label"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/GAS_DETECT_SETTING_HIGH_LIMITE"
-                android:textColor="#444"
-                android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/tv_sensor_pressvalue1h_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/GAS_DETECT_SETTING_HIGH_LIMITE"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerInParent="true"
+                            android:textColor="#444"
+                            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_sensor_pressvalue1h"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:textColor="#444"
-                android:textSize="14sp"
-                android:inputType="numberDecimal"/>
+                        <TextView
+                            android:id="@+id/tv_sensor_pressvalue1h"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentRight="true"
+                            android:textColor="#444"
+                            android:textSize="14sp"
+                            android:inputType="numberDecimal"/>
+                    </RelativeLayout>
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
 
+                        <TextView
+                            android:id="@+id/tv_sensor_pressvalue1l_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/GAS_DETECT_SETTING_LOW_LIMITE"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentLeft="true"
+                            android:textColor="#444"
+                            android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_sensor_pressvalue1l_label"
-                android:layout_weight="2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/GAS_DETECT_SETTING_LOW_LIMITE"
-                android:textColor="#444"
-                android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/tv_sensor_pressvalue1l"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:inputType="numberDecimal"
+                            android:textColor="#444"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_sensor_pressvalue1l"
-                android:layout_weight="2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:inputType="numberDecimal"
-                android:textColor="#444"
-                android:textSize="14sp" />
-        </LinearLayout>
+            </LinearLayout>
 
+            </android.support.v7.widget.CardView>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -131,7 +151,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:layout_gravity="center_vertical"
         android:id="@+id/sensor_timeset"
         android:orientation="vertical">
@@ -248,7 +268,7 @@
             android:layout_marginStart="20dp"
             android:textSize="16sp"
             android:background="@drawable/round_button"
-            android:text="@string/device_button_action_CMD"
+            android:text="@string/device_button_action"
             android:textColor="#fff" />
 
     </LinearLayout>

@@ -100,37 +100,41 @@ public class GasSensorSetFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 mIsatart=true;
-                MyDlg dlg=new MyDlg(MainActivity.getInstance());
-                dlg.SetOnbutclickListernerdlg(new MyDlg.Onbutclicked() {
-                    @Override
-                    public void Onbutclicked(int select) {
-                        if(select==1) //读数据
-                        {
-                            Toast.makeText(MainActivity.getInstance(),"read",Toast.LENGTH_SHORT).show();
-                            CodeFormat.crcencode(sendbufread);
-                            String readOutMsg = DigitalTrans.byte2hex(sendbufread);
-                            Log.d("zl",readOutMsg);
-                            verycutstatus(readOutMsg);
-                        }
-                        else if(select==0)//写数据
-                        {
-                            Toast.makeText(MainActivity.getInstance(),"write",Toast.LENGTH_SHORT).show();
-                            CodeFormat.crcencode(sendbufwrite);
-                            String readOutMsg = DigitalTrans.byte2hex(sendbufwrite);
-                            Log.d("zl","写:"+ CodeFormat.byteToHex(sendbufwrite,sendbufwrite.length));
-                            if(checkinput())
-                            {
-                                verycutstatus(readOutMsg);
-                            }
-                            else
-                            {
-                                Toast.makeText(MainActivity.getInstance(),"数据未填充完整",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                });
-//                Log.d("zl","dlg.show()");
-                dlg.show();
+                CodeFormat.crcencode(sendbufread);
+                String readOutMsg = DigitalTrans.byte2hex(sendbufread);
+                Log.d("zl",readOutMsg);
+                verycutstatus(readOutMsg);
+//                MyDlg dlg=new MyDlg(MainActivity.getInstance());
+//                dlg.SetOnbutclickListernerdlg(new MyDlg.Onbutclicked() {
+//                    @Override
+//                    public void Onbutclicked(int select) {
+//                        if(select==1) //读数据
+//                        {
+//                            Toast.makeText(MainActivity.getInstance(),"read",Toast.LENGTH_SHORT).show();
+//                            CodeFormat.crcencode(sendbufread);
+//                            String readOutMsg = DigitalTrans.byte2hex(sendbufread);
+//                            Log.d("zl",readOutMsg);
+//                            verycutstatus(readOutMsg);
+//                        }
+//                        else if(select==0)//写数据
+//                        {
+//                            Toast.makeText(MainActivity.getInstance(),"write",Toast.LENGTH_SHORT).show();
+//                            CodeFormat.crcencode(sendbufwrite);
+//                            String readOutMsg = DigitalTrans.byte2hex(sendbufwrite);
+//                            Log.d("zl","写:"+ CodeFormat.byteToHex(sendbufwrite,sendbufwrite.length));
+//                            if(checkinput())
+//                            {
+//                                verycutstatus(readOutMsg);
+//                            }
+//                            else
+//                            {
+//                                Toast.makeText(MainActivity.getInstance(),"数据未填充完整",Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    }
+//                });
+////                Log.d("zl","dlg.show()");
+//                dlg.show();
             }
 
             private Boolean checkinput() {

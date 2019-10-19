@@ -13,6 +13,7 @@
     <string name="DEVICE_NO_RESPONE">Device has no response</string>
     <string name="PHONE_HAS_NO_BLUETOOTH">Do not support blue tooth,app will exit</string>
     <string name="PRESS_AGAIN_EXIT">Press again to exit</string>
+    <string name="DEVICE_SEETING_ERROR">Fail to write data</string>
 <!--    <string name="BLUE_BUTTON_TEXT">Scan Device</string>-->
 
     <!--  DeviceListActivity -->
@@ -115,7 +116,7 @@
 
     <!--    gas alarm setting information-->
 
-    <string name="GAS_DETECT_SETTING_LOW_LIMITE">Low   threshold</string>
+    <string name="GAS_DETECT_SETTING_LOW_LIMITE">Low threshold</string>
     <string name="GAS_DETECT_SETTING_HIGH_LIMITE">High threshold</string>
     <string name="GAS_HIGH_MUST_BIGGER">High threshold must be larger than Low threshold</string>
     <string name="GAS_SENSOR_TYPE">Type</string>
