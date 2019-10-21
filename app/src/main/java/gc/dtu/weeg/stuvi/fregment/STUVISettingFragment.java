@@ -232,6 +232,11 @@ public class STUVISettingFragment extends BaseFragment {
                 mUploadValueTX.setText(daytime);
             }
         }
+        else if(addr == 48)
+        {
+            String tempver = String.format("%d.%d.%d",readOutBuf1[16]&0xff,readOutBuf1[17]&0xff,readOutBuf1[18]&0xff);
+            mDeviceSoftVerTX.setText(""+tempver);
+        }
         else
         {
             temp="";
@@ -248,7 +253,7 @@ public class STUVISettingFragment extends BaseFragment {
             } else if(addr == 103){
                 mDeviceserialnumberTX.setText(""+temp);
             }else if(addr == 3){
-                mDeviceSoftVerTX.setText(""+temp);
+//                mDeviceSoftVerTX.setText(""+temp);
             }
         }
 
@@ -278,7 +283,7 @@ public class STUVISettingFragment extends BaseFragment {
                 {
 
                         {"49",getString(R.string.device_describe),"40","R"},
-                        {"3",getString(R.string.device_firmware),"4","R"},
+                        {"48",getString(R.string.device_firmware),"4","R"},
                         {"103",getString(R.string.device_usersID),"8","T"},
                         {"105",getString(R.string.device_local_time),"7","R"},
 //                    {"198",getString(R.string.device_wireless_module),"1","L"},
