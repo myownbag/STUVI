@@ -200,8 +200,8 @@ public class SensoritemsettingActivity extends Activity {
                 case 5:
                     selectlayout.setVisibility(View.VISIBLE);
 //                    anologinputlayout.setVisibility(View.VISIBLE);
-                    text1.setText(R.string.GAS_DETECT_SETTING_LOW_LIMITE);
-                    text2.setText(R.string.GAS_DETECT_SETTING_HIGH_LIMITE);
+                    text1.setText(R.string.GAS_DETECT_SETTING_HIGH_LIMITE);
+                    text2.setText(R.string.GAS_DETECT_SETTING_LOW_LIMITE);
                     m_range.setText(tempcontent);
                     editText1.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED);
                     editText2.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL|InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_SIGNED);
@@ -394,23 +394,12 @@ public class SensoritemsettingActivity extends Activity {
             {
                 case 1:
                 case 2:
-                     if(Float.valueOf(editText1.getText().toString())<Float.valueOf(editText2.getText().toString()))
-                     {
-                         ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.UPPER_MUST_BIGGER));
-                         return;
-                     }
-
                 case 3:
                 case 4:
                     sendbufread[14]= (byte) 0xD9;
                     mainActivity.fregment4.updateallsettingitems(itemdata);
                     break;
                 case 5:
-                    if(Float.valueOf(editText1.getText().toString())>Float.valueOf(editText2.getText().toString()))
-                    {
-                        ToastUtils.showToast(SensoritemsettingActivity.this,getString(R.string.GAS_HIGH_MUST_BIGGER));
-                        return;
-                    }
                 case 6:
                     sendbufread[14]= (byte) 0xDA;
                     mainActivity.fregment5.updateallsettingitems(itemdata);
