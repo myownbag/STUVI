@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:aandroid="http://schemas.android.com/apk/res-auto">
 
@@ -30,86 +31,119 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="150dp"
             android:layout_below="@id/reg1998_lable">
-            <LinearLayout
+            <android.support.v7.widget.CardView
+                app:cardCornerRadius="10dp"
+                app:cardElevation="10dp"
+                app:cardMaxElevation="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:weightSum="9">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:id="@+id/tv_ins_baud_lable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="@string/EVC_BAUD_RATE"/>
-                    <TextView
-                        android:id="@+id/tv_ins_baud_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/tv_ins_baud_lable"
-                        android:layout_toRightOf="@+id/tv_ins_baud_lable"
-                        android:layout_centerVertical="true"
-                        android:gravity="center_horizontal"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/tv_ins_paritybit_lable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/EVC_BAUD_CHECK_BIT" />
-                    <TextView
-                        android:id="@+id/tv_ins_paritybit_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                >
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/tv_ins_databit_lable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/EVC_BAUD_DATA_BIT" />
-                    <TextView
-                        android:id="@+id/tv_ins_databit_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="4">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        >
+                        <TextView
+                            android:id="@+id/tv_ins_baud_lable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentLeft="true"
+                            android:text="@string/EVC_BAUD_RATE"/>
+                        <TextView
+                            android:id="@+id/tv_ins_baud_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            />
+
+
+                    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    >
+
+                        <TextView
+                            android:id="@+id/tv_ins_paritybit_lable"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentLeft="true"
+                            android:text="@string/EVC_BAUD_CHECK_BIT" />
+                        <TextView
+                            android:id="@+id/tv_ins_paritybit_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            />
+
+
+                </RelativeLayout>
+                  <RelativeLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="0dp"
+                      android:layout_weight="1"
+                      >
+
+                          <TextView
+                              android:id="@+id/tv_ins_databit_lable"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_centerInParent="true"
+                              android:layout_alignParentLeft="true"
+                              android:text="@string/EVC_BAUD_DATA_BIT" />
+                          <TextView
+                              android:id="@+id/tv_ins_databit_value"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_centerInParent="true"
+                              />
+
+
+
+
+                  </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        >
+
+
+                            <TextView
+                                android:id="@+id/tv_ins_stopbit_lable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_alignParentLeft="true"
+                                android:text="@string/EVC_BAUD_STOP_BIT" />
+                            <TextView
+                                android:id="@+id/tv_ins_stopbit_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/tv_ins_stopbit_lable"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/EVC_BAUD_STOP_BIT" />
-                    <TextView
-                        android:id="@+id/tv_ins_stopbit_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-
+            </android.support.v7.widget.CardView>
         </RelativeLayout>
 
     </RelativeLayout>
@@ -154,12 +188,14 @@
                 android:id="@+id/tv_ins_recodegap_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/tv_ins_recodegap_lable" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
                 android:layout_toRightOf="@+id/tv_ins_recodegap_value"
                 android:text="@string/EVC_Acquisition_SETTING_STEP"/>
             <ImageView
